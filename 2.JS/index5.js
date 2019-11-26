@@ -65,7 +65,7 @@ function quickSort(arr, left, right) {
 
 
 // selection sort (1 way)
-/*
+
 
   function selectionSort(arr){
   
@@ -79,8 +79,7 @@ function quickSort(arr, left, right) {
     return arr;
   };
 
-*/
-  //console.log(selectionSort([1,2,3,8,4,7,6,2]));
+    console.log(selectionSort([1,2,3,8,4,7,6,2]));
 
  
 
@@ -97,4 +96,4 @@ function quickSort(arr, left, right) {
     }
        return arr;
   }
-  console.log(insertionSort([1,2,5,4,9,8,7]));
+  //console.log(insertionSort([1,2,5,4,9,8,7]));
