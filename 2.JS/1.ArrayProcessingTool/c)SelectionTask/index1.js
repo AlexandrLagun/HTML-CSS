@@ -16,5 +16,5 @@ function getSeqMaxSum(arr){
             }
             return (max > 0)? max: -1;
         }
-        console.log(getSeqMaxSum( [1,2,3,-15,1,4,8] ));
+        console.log(getSeqMaxSum( [-1,-2,-3,-17,-2] ));
        
