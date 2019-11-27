@@ -58,9 +58,13 @@ console.log(d);
 
 function formatDate(d, formatOut) {
 
-    var monthArr = ['January','Febrary', 'March', 'April',
+    var monthArray = ['January','Febrary', 'March', 'April',
                  'May', 'June', 'July', 'August', 'September', 
                  'October', 'November', 'December'];
+
+    var monthArr = ['Jan','Feb', 'Mar', 'Apr',
+                 'May', 'Jun', 'Jul', 'Aug', 'Sep', 
+                 'Oct', 'Nov', 'Dec'];
 
     var date = d.getDate();
     if (date < 10) {
@@ -81,7 +85,34 @@ function formatDate(d, formatOut) {
                     /DD\/MM\/YYYY/, /DD\/MMM\/YYYY/, /DD\/MMMM\/YYYY/
                      ];
 
-        if (restr[0])
+        if (restr[0].test(formatOut)) {
+            return `${date} ${month} ${year}`;
+        }
+        if (restr[3].test(formatOut)) {
+            return `${date}${month}${year}`;
+        }
+        if (restr[6].test(formatOut)) {
+            return `${date}.${month}.${year}`;
+        }
+        if (restr[9].test(formatOut)) {
+            return `${date}-${month}-${year}`;
+        }
+        if (restr[12].test(formatOut)) {
+            return `${date}/${month}/${year}`;
+        }
+
+        if (restr[1].test(formatOut) || restr[4].test(formatOut) || restr[7].test(formatOut) || restr[10].test(formatOut) || restr[13].test(formatOut)) {
+            
+            var monthArr = ['Jan','Feb', 'Mar', 'Apr',
+            'May', 'Jun', 'Jul', 'Aug', 'Sep', 
+            'Oct', 'Nov', 'Dec'];
+
+            switch(month) {
+                
+            }
+        }
+
+
 
 
 
