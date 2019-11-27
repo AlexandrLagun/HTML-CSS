@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test numbers operations</title>
+	<style type="text/css" src="styles.css"></style>
+	<!-- Bootstrap -->
+    <!--<link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet"> --> 
+	<script type="text/javascript" src="number.js"></script>
+	<script type="text/javascript" src="appManager.js"></script>
+	<script type="text/javascript">
+		var calculator = new Calculator();
+		var appManager = new AppManager();
+		window.onload = function () {
+			var calculateButton = document.getElementById('calculate');
+			calculateButton.addEventListener( 'click', 
+				function () {
+					appManager.run(calculator, document)
+				}, false
+			);
+			document.getElementById('from_cache').style.display = 'none';
+		};
+	</script>
+</head>
+<body>
+	<div class="row">
+
+		<div class="col-md-4">
+			
+		</div>
+
+		<div class="col-md-5">
+			<input id="first_operand" type="number" min="1" max="1000000">
+
+			<!-- rewrite bootstrap-width -->
+			<select id="operation_select" class="form-control" style="width: 92px;">
+				<option value="add">+</option>
+				<option value="sub">-</option>
+				<option value="multipe">*</option>
+				<option value="division">/</option>
+				<option value="pow">^</option>
+				<option value="log">log</option>				
+			</select>
+
+			<input id="second_operand" type="number" min="1" max="1000000">
+
+			<p>
+				<button id="calculate" class="btn btn-default">Calculate</button>
+			</p>
+
+			<p id="result_calculation">
+
+			</p>
+
+			<span class="label label-success" id="from_cache">
+				
+			</span>
+
+		</div>	
+
+		<div class="col-md-2">
+			
+		</div>
+
+	</div>
+
+	
+</body>
+</html>

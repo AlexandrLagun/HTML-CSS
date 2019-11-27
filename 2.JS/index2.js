@@ -247,7 +247,7 @@ function formatDate(d, formatOut) {
     }
 }
 
-var f = formatDate(d, 'DD/MMM/YYYY');
+var f = formatDate(d, 'DD-MMMM-YYYY');
 console.log(f);
 
 
