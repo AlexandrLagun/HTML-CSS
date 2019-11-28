@@ -12,57 +12,51 @@ function bubbleSort(arr) {
     }
     return arr;
 }
-//console.log(bubbleSort([1,3,5,7,2,3,4,15,9]));
+//console.log(bubbleSort([1,4,3,2,7,6]));
 
 // quicksort  
 
-function quickSort(arr, left, right) {
-
-    function swap(arr, firstInd, secondInd){
-
-        const temp = arr[firstInd];
-        arr[firstInd] = arr[secondInd];
-        arr[secondInd] = temp;
-    }
-    
-    function partition(arr, left, right) {
-
-        var pivot   = arr[(right + left) / 2],
-            i = left,
-            j = right;
-        while (i <= j) {
-            while (arr[i] < pivot) {
-                i++;
-            }
-            while (arr[j] > pivot) {
-                j--;
-            }
-            if (i <= j) {
-                swap(arr, i, j);
-                i++;
-                j--;
-            }
+function swap(arr, leftIndex, rightIndex){
+    var temp = arr[leftIndex];
+    arr[leftIndex] = arr[rightIndex];
+    arr[rightIndex] = temp;
+}
+function partition(arr, left, right) {
+    var pivot  = arr[Math.floor((right + left) / 2)], 
+        i  = left, 
+        j  = right; 
+    while (i <= j) {
+        while (arr[i] < pivot) {
+            i++;
         }
-        return i;
+        while (arr[j] > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swap(arr, i, j); 
+            i++;
+            j--;
+        }
     }
+    return i;
+}
 
-    
+function quickSort(arr, left, right) {
+    var index;
     if (arr.length > 1) {
-        left = typeof left != "number" ? 0 : left;
-        right = typeof right != "number" ? arr.length - 1 : right;
-        var index = partition(arr, left, right);
-
-        if (left < index - 1) {
+        index = partition(arr, left, right); 
+        if (left < index - 1) { 
             quickSort(arr, left, index - 1);
         }
-        if (index < right) {
+        if (index < right) { 
             quickSort(arr, index, right);
         }
     }
     return arr;
 }
-//var result = quickSort([1,3,4,2,10,8,7,9]);
-
+var arr = [1,3,2,7,6,5,18];
+var rs = quickSort( arr, 0, arr.length - 1,);
+console.log(rs);
 
 // selection sort (1 way)
 
@@ -79,7 +73,7 @@ function quickSort(arr, left, right) {
     return arr;
   };
 
-    console.log(selectionSort([1,2,3,8,4,7,6,2]));
+  //  console.log(selectionSort([1,2,3,8,4,7,6,2]));
 
  
 

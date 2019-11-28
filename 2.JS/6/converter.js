@@ -27,7 +27,8 @@ function fromAnyToAny(numVector, systemFrom, systemTo) {
 }
 //console.log(fromAnyToAny([1,0,1,1], 2, 10));
 
-function convertFromVector(vector) {
+function convertFromVector(string) {
+    var vector = string.split(",");
     var str = "";
     var ch = "";
     for(var i = vector.length -1; i >= 0; i--) {
@@ -47,4 +48,4 @@ var objConvert = {
     anyToAny: fromAnyToAny
 }
 
-console.log(objConvert.anyToAny([2,1], 10, 2));
+//console.log(objConvert.anyToAny([2,1], 10, 2));

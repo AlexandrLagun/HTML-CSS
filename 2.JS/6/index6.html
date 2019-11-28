@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Number converter</title>
+    </head>
+    <body>
+        <div class="row">
+                <label for = "string">number:</label>
+                <input id="string" type="string" style="width: 80px;">
+
+
+                <label for = "system_from">from system:</label>
+                <input id="system_from" type="number" list="data" min ="2" step="2" style="width: 80px;">
+                <datalist id = "data">
+                        <option value="2">2</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="16">16</option>
+                </datalist>
+
+                <label for = "system_to">from system:</label>
+                <input id="system_to" type="number" list="syst_to" min ="2" step="2" style="width: 80px;">
+                <datalist id = "syst_to">
+                        <option value="2">2</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="16">16</option>
+                </datalist>
+
+                <button id="convert" >Convert</button>
+
+                <p id="result_number">
+                   
+                </p>
+                
+    
+        </div>
+    
+        <script type="text/javascript" src="handler.js"></script> 
+        <script type="text/javascript" src="converter.js"></script>
+    </body>    
+</html>
