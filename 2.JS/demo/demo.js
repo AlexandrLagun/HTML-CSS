@@ -52,7 +52,7 @@ function createDate(date, formatIn) {
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------
-var d = createDate('20012019', 'DDMMYYYY');
+var d = createDate('');
 console.log(d);
 
 
@@ -247,9 +247,5 @@ function formatDate(d, formatOut) {
     }
 }
 
-var f = formatDate(d, 'DD-MMMM-YYYY');
+var f = formatDate(d, 'DD/MMMM/YYYY');
 console.log(f);
-
-
-
-

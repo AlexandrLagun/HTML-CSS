@@ -1,6 +1,6 @@
 function formatByWord(str) {
     var arr = str.split(' ');
-    console.log(arr);
+    //console.log(arr);
     strResult = arr.join('\n');
     return strResult;
 }
@@ -24,16 +24,9 @@ function formatBySentence(str) {
 
 
 function textHandler(str, maxLength, maxRowCount, formatType) {
-    /*
-    if (maxLength !== undefined && maxLength > 0 && typeof maxLength === 'number') {
-        if (str.length > maxLength) var sl = 'too big length of the string!'; 
-    } 
     
-    if (maxRowCount !== undefined && maxRowCount > 0 && typeof maxRowCount === 'number') {
-        var lines = str.split('\n').length;
-        if(lines > maxRowCount) var sr = 'too big number of the rows!';
-    }
-    */
+   
+    
     var formatType = arguments[arguments.length-1];
     switch(formatType) {
         case "word": {
@@ -51,5 +44,6 @@ function textHandler(str, maxLength, maxRowCount, formatType) {
         default: return str;
     } 
 }
-var stringValue = 'hello dart waider han solo!';
-console.log(textHandler(stringValue, 2, 6, "word"));
+//hello dart waider han solo!
+var stringValue = 'rdeytr';
+console.log(textHandler('rdeytr', 2, 6, "symbol"));
