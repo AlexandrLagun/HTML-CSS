@@ -3,16 +3,17 @@ function sum() {
     for (var i = 0; i < arguments.length; i++) {
         sumValue += Number(arguments[i]);
     }
-    console.log(sumValue.toFixed(2));
+    return sumValue;
 }
-//sum('1','2','3','4');
+var s = sum('1','2','3','4');
+console.log(s);
 
 function mul() {
     var mulValue = 1;
     for (var i = 0; i < arguments.length; i++) {
         mulValue *= Number(arguments[i]);
     }
-    console.log(mulValue.toFixed(2));
+    return mulValue;
 }
 //mul('1','2','3','4');
 
@@ -21,7 +22,7 @@ function dif() {
     for (var i = 1; i < arguments.length; i++) {
         difValue -= Number(arguments[i]);
     }
-    console.log(difValue.toFixed(2));
+    return difValue;
 }
 //dif('24','2','3','2');
 
@@ -30,7 +31,7 @@ function div() {
     for (var i = 1; i < arguments.length; i++) {
         divValue /= Number(arguments[i]);
     }
-    console.log(divValue.toFixed(2));
+    return divValue;
 }
 //div('24','2','3','2');
 
