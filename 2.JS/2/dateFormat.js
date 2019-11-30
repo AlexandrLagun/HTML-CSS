@@ -1,41 +1,42 @@
+'use strict'
 function createDate(date, formatIn) {
     if (formatIn !== undefined) {
 
-        var restr = [ /DDMMYYYY/,/DD\.MM\.YYYY/, /DD\-MM\-YYYY/, 
+        var restr1 = [ /DDMMYYYY/,/DD\.MM\.YYYY/, /DD\-MM\-YYYY/, 
                     /DD\/MM\/YYYY/, /DD\ MM\ YYYY/, /YYYY\.MM\.DD/, 
                     /YYYY\-MM\-DD/, /YYYY\/MM\/DD/, /YYYY\ MM\ DD/,
                     /YYYYMMDD/ ];
 
 
-        if (restr[0].test(formatIn)) {
+        if (restr1[0].test(formatIn)) {
             var year = date.slice(4,8);
             var month = Number(date.slice(2,4)) -1;
-            var date = date.slice(0,2);
-            return new Date(year, month, date);
+            var dat = date.slice(0,2);
+            return new Date(year, month, dat);
         }
 
-        if (restr[1].test(formatIn) || restr[2].test(formatIn) || restr[3].test(formatIn) || restr[4].test(formatIn) )
+        if (restr1[1].test(formatIn) || restr1[2].test(formatIn) || restr1[3].test(formatIn) || restr1[4].test(formatIn) )
         {
             var year = date.slice(6,10);
             var month = Number(date.slice(3,5)) -1;
-            var date = date.slice(0,2);
-            return new Date(year, month, date);
+            var dat = date.slice(0,2);
+            return new Date(year, month, dat);
         }
 
-        if (restr[5].test(formatIn) || restr[6].test(formatIn) || restr[7].test(formatIn) || restr[8].test(formatIn) )
+        if (restr1[5].test(formatIn) || restr1[6].test(formatIn) || restr1[7].test(formatIn) || restr1[8].test(formatIn) )
         {
             var year = date.slice(0,4);
             var month = Number(date.slice(5,7)) -1;
-            var date = date.slice(8,10);
-            return new Date(year, month, date);
+            var dat = date.slice(8,10);
+            return new Date(year, month, dat);
         }
 
-        if (restr[9].test(formatIn)  )
+        if (restr1[9].test(formatIn)  )
         {
             var year = date.slice(0,4);
             var month = Number(date.slice(4,6)) -1;
-            var date = date.slice(6,8);
-            return new Date(year, month, date);
+            var dat = date.slice(6,8);
+            return new Date(year, month, dat);
         }
 
     }
@@ -44,21 +45,22 @@ function createDate(date, formatIn) {
         return new Date(date);
     }
 
-    var date = date.slice(0,2);
+    var dat = date.slice(0,2);
     var month =  Number(date.slice(2,4)) -1;
     var year = date.slice(4,8);
-    return  new Date(year, month, date, 15, 30);
+    return  new Date(year, month, dat);
 }
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------
-var d = createDate('20012019', 'DDMMYYYY');
+var d = createDate('20.10.2019', 'DD.MM.YYYY');
 console.log(d);
 
 
 
 function formatDate(d, formatOut) {
 
+    var result;
     var date = d.getDate();
     if (date < 10) {
         date = '0' + date;
@@ -67,6 +69,7 @@ function formatDate(d, formatOut) {
     if (month < 10) {
         month = '0' + month;
     }
+    month = "" + month;
     var year = d.getFullYear();             
 
     if (formatOut !== undefined) {
@@ -82,7 +85,7 @@ function formatDate(d, formatOut) {
             return `${date} ${month} ${year}`;
         }
         if (restr[3].test(formatOut)) {
-            return `${date}${month}${year}`;
+            return  `${date}${month}${year}`;
         }
         if (restr[6].test(formatOut)) {
             return `${date}.${month}.${year}`;
@@ -249,6 +252,8 @@ function formatDate(d, formatOut) {
 
 var f = formatDate(d, 'DD-MMMM-YYYY');
 console.log(f);
+//console.log(typeof f);
+
 
 
 

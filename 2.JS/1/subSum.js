@@ -14,4 +14,13 @@ function getSeqMaxSum(arr){
     }
     return max;
 }
-console.log(getSeqMaxSum( [-1, 2,4,6,7,-1] ));
+//var re = getSeqMaxSum( arrSpl );
+/*var strArr = '-12,1,2,3,-8,4';
+var arrSpl = strArr.split(",");
+
+var art = [];
+for (var i = 0; i < arrSpl.length; i++) {
+    art[i] = Number(arrSpl[i]); 
+} 
+var re = getSeqMaxSum( art );
+console.log(re);*/

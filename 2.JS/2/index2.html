@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Date converter</title>
+    </head>
+    <body>
+        <div class="row">
+                <label for = "date">Date:</label>
+                <input id="date" type="string" style="width: 80px;">
+
+                <label id = "r">from format:</label> 
+                <select id = "date-from">  
+                        <option value="DDMMYYYY">DDMMYYYY</option>
+                        <option value="DD.MM.YYYY">DD.MM.YYYY</option>
+                        <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                        <option value="DDMMYYYY">DD/MM/YYYY</option>     
+                        <option value="DD MM YYYY">DD MM YYYY</option>
+                        <option value="YYYY.MM.DD">YYYY.MM.DD</option>
+                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                        <option value="YYYY/MM/DD">YYYY/MM/DD</option>  
+                        <option value="YYYY MM DD">YYYY MM DD/</option>
+                        <option value="YYYYMMDD">YYYYMMDD</option>    
+                </select> 
+
+
+                <label id = "w">to format:</label> 
+                <select id = "date-to" >
+                        <option value="DD MM YYYY">DD MM YYYY</option>
+                        <option value="DD MMM YYYY">DD MMM YYYY</option>
+                        <option value="DD MMMM YYYY">DD MMMM YYYY</option>
+                        <option value="DDMMYYYY">DDMMYYYY</option>
+                        <option value="DDMMMYYYY">DDMMMYYYY</option>
+                        <option value="DDMMMMYYYY">DDMMMMYYYY</option>
+                        <option value="DD.MM.YYYY"> DD.MM.YYYY</option>
+                        <option value="DD.MMM.YYYY">DD.MMM.YYYY</option>
+                        <option value="DD.MMMM.YYYY">DD.MMMM.YYYY</option>
+                        <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                        <option value="DD-MMM-YYYY">DD-MMM-YYYY</option>
+                        <option value="DD-MMMM-YYYY">DD-MMMM-YYYY</option>
+                        <option value="DD/MM/YYYY/"> DD/MM/YYYY</option>
+                        <option value="DD/MMM/YYYY">DD/MMM/YYYY</option>
+                        <option value="DD/MMMM/YYYY">DD/MMMM/YYYY</option>
+                </select> 
+
+
+                <button id="format" >Format date</button>
+
+                <div id="result">
+                   
+                </div>
+                <p id = "tmp">
+                    
+                </p>
+                
+    
+        </div>
+    
+        <script type="text/javascript" defer src="handler.js"></script> 
+        <script type="text/javascript" defer src="dateFormat.js"></script>
+    </body>    
+</html>

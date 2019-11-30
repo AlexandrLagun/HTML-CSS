@@ -14,9 +14,12 @@ function search(arr) {
         
     }
     var median = sum / arr.length;
-    console.log(`max = ${max}, min = ${min},  median = ${median}`);
+    var resArr = [max, min, median.toFixed(2)];
+    return resArr;
+    //console.log("max = " + resArr[0] + ",  min = " + resArr[1] + ", medium = " + resArr[2]);
+    //console.log(`max = ${max}, min = ${min},  median = ${median}`);
 }
 
-search([1,2,3,-10]);
+//search([1,2,3,-10]);
 
 
