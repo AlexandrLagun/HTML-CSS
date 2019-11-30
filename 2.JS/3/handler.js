@@ -5,6 +5,7 @@ var formatButton = document.getElementById('format');
             var maxLength  = document.getElementById('max_length').value;
             var maxRows  = document.getElementById('max_row_count').value;
             var formatType  = document.getElementById('format_type').value;
+<<<<<<< HEAD
 
             if (maxLength !== undefined && maxLength > 0) {
                 var elem1 = document.getElementById('alert_max_length');
@@ -14,6 +15,20 @@ var formatButton = document.getElementById('format');
                      elem1.innerHTML = '';
                   }
             } 
+=======
+            
+            var result = textHandler(str, maxLength, maxRows, formatType);
+            
+            if (maxLength !== undefined && maxLength > 0 ) {
+                var elem1 = document.getElementById('max_length');
+                elem1.innerHTML = 'too big length of the string!';
+            } 
+            
+            if (maxRowCount !== undefined && maxRowCount > 0 ) {
+                var lines = str.split('\n').length;
+                if(lines > maxRowCount) var sr = 'too big number of the rows!';
+            }
+>>>>>>> 1baec9aaf5e91a957353acc59d73c57b58afaa7a
              
             var result = textHandler(str, maxLength, maxRows, formatType);
 

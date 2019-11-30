@@ -8,6 +8,7 @@
                 <label for = "date">Date:</label>
                 <input id="date" type="string" style="width: 80px;">
 
+<<<<<<< HEAD
                 <label id = "r">from format:</label> 
                 <select id = "date-from">  
                         <option value="DDMMYYYY">DDMMYYYY</option>
@@ -48,6 +49,47 @@
                 <div id="result">
                    
                 </div>
+=======
+
+                <label>from format:</label>
+                <select id = "date_from" name="from">  
+                        <option value="/DDMMYYYY/">DDMMYYYY</option>
+                        <option value="/DD\.MM\.YYYY/">DD.MM.YYYY</option>
+                        <option value="/DD\-MM\-YYYY/">DD-MM-YYYY</option>
+                        <option value="/DD\/MM\/YYYY/">DD/MM/YYYY</option>     
+                        <option value="/DD\ MM\ YYYY/">DD MM YYYY</option>
+                        <option value="/YYYY\.MM\.DD/">YYYY.MM.DD</option>
+                        <option value="/YYYY\-MM\-DD/">YYYY-MM-DD</option>
+                        <option value="/YYYY\/MM\/DD/">YYYY/MM/DD</option>  
+                        <option value="/YYYY\ MM\ DD/">YYYY MM DD/</option>
+                        <option value="/YYYYMMDD/">YYYYMMDD</option>    
+                </select>
+
+                <label>to format:</label>
+                <select id = "date_to" name = "to">
+                        <option value="/DD\ MM\ YYYY/">DD MM YYYY</option>
+                        <option value="/DD\ MMM\ YYYY/">DD MMM YYYY</option>
+                        <option value="/DD\ MMMM\ YYYY/">DD MMMM YYYY</option>
+                        <option value="/DDMMYYYY/">DDMMYYYY</option>
+                        <option value="/DDMMMYYYY/">DDMMMYYYY</option>
+                        <option value="/DDMMMMYYYY/">DDMMMMYYYY</option>
+                        <option value="/DD\.MM\.YYYY/"> DD.MM.YYYY</option>
+                        <option value="/DD\.MMM\.YYYY/">DD.MMM.YYYY</option>
+                        <option value="/DD\.MMMM\.YYYY/">DD.MMMM.YYYY</option>
+                        <option value="/DD\-MM\-YYYY/">DD-MM-YYYY</option>
+                        <option value="/DD\-MMM\-YYYY/">DD-MMM-YYYY</option>
+                        <option value="/DD\-MMMM\-YYYY/">DD-MMMM-YYYY</option>
+                        <option value="/DD\/MM\/YYYY/"> DD/MM/YYYY</option>
+                        <option value="/DD\/MMM\/YYYY/">DD/MMM/YYYY</option>
+                        <option value="/DD\/MMMM\/YYYY/">DD/MMMM/YYYY</option>
+                </select>
+
+                <button id="format" >Format date</button>
+
+                <p id="result_date">
+                   
+                </p>
+>>>>>>> 1baec9aaf5e91a957353acc59d73c57b58afaa7a
                 <p id = "tmp">
                     
                 </p>
@@ -55,7 +97,15 @@
     
         </div>
     
+<<<<<<< HEAD
         <script type="text/javascript" defer src="handler.js"></script> 
         <script type="text/javascript" defer src="dateFormat.js"></script>
     </body>    
 </html>
+=======
+        <script type="text/javascript" src="handler.js"></script> 
+        <script type="text/javascript" src="dateFormat.js"></script>
+    </body>    
+</html>
+ 
+>>>>>>> 1baec9aaf5e91a957353acc59d73c57b58afaa7a
