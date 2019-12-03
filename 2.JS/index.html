@@ -1,0 +1,263 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>2 Tasks JS</title> 
+        <link rel="stylesheet" type="text/css" href="styles.css"> 
+    </head>
+    <body>
+        <div class ="task" id ="t1">
+                <p>
+                        1 task: the program that finds the maximal 
+                        sum of a subsequence of an array; the maximum
+                         non-decreasing subsequence; min, max and medium 
+                         values of the entered array
+                </p>
+                <label for = "string">Array:</label>
+                <input id="string" type="string" style="width: 100px;"/>
+                <div>
+                    <button id="subMaxSum" >Find max sum</button>
+                    <p id="result" > </p> 
+                </div>
+                <br/>
+                <div>
+                    <button id="selectMaxSeq" >Find max sequence</button>
+                    <p id="result1" > </p> 
+                </div>
+                <br/>
+                <div>
+                    <button id="search" >Search max, min, median</button>
+                    <p id="result2" > </p> 
+                </div>   
+        </div>
+        <div class = "task" id = "t2">
+                        <p>
+                                2 task: the program that takes a date in one format and returns it in another
+                        </p>
+                <label for = "date">Date:</label>
+                <input id="date" type="string" style="width: 80px;">
+
+                <label id = "r">from format:</label> 
+                <select id = "date-from">  
+                        <option value="DDMMYYYY">DDMMYYYY</option>
+                        <option value="DD.MM.YYYY">DD.MM.YYYY</option>
+                        <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                        <option value="DDMMYYYY">DD/MM/YYYY</option>     
+                        <option value="DD MM YYYY">DD MM YYYY</option>
+                        <option value="YYYY.MM.DD">YYYY.MM.DD</option>
+                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                        <option value="YYYY/MM/DD">YYYY/MM/DD</option>  
+                        <option value="YYYY MM DD">YYYY MM DD/</option>
+                        <option value="YYYYMMDD">YYYYMMDD</option>    
+                </select> 
+
+
+                <label id = "w">to format:</label> 
+                <select id = "date-to" >
+                        <option value="DD MM YYYY">DD MM YYYY</option>
+                        <option value="DD MMM YYYY">DD MMM YYYY</option>
+                        <option value="DD MMMM YYYY">DD MMMM YYYY</option>
+                        <option value="DDMMYYYY">DDMMYYYY</option>
+                        <option value="DDMMMYYYY">DDMMMYYYY</option>
+                        <option value="DDMMMMYYYY">DDMMMMYYYY</option>
+                        <option value="DD.MM.YYYY"> DD.MM.YYYY</option>
+                        <option value="DD.MMM.YYYY">DD.MMM.YYYY</option>
+                        <option value="DD.MMMM.YYYY">DD.MMMM.YYYY</option>
+                        <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                        <option value="DD-MMM-YYYY">DD-MMM-YYYY</option>
+                        <option value="DD-MMMM-YYYY">DD-MMMM-YYYY</option>
+                        <option value="DD/MM/YYYY/"> DD/MM/YYYY</option>
+                        <option value="DD/MMM/YYYY">DD/MMM/YYYY</option>
+                        <option value="DD/MMMM/YYYY">DD/MMMM/YYYY</option>
+                </select> 
+
+
+                <button id="format" >Format date</button>
+
+                <div id="result3">
+                   
+                </div>
+        </div>
+        <div class ="task" id = "t3">
+                <p>
+                       3 task: the program that takes a string and wraps it by 
+                       words, symbols or sentences. The program can check the result for  
+                       the maximum length and maximum number of columns
+                </p>
+                <label for = "string1">String:</label>
+                <input id="string1" type="string">
+
+
+                <label for = "max_length">Max line length:</label>
+                <input id="max_length" type="number" list="max_l" min ="0" step="1" style="width: 80px;">
+                <datalist id = "max_l">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                </datalist>
+
+                <label for = "max_row_count">Max number of rows:</label>
+                <input id="max_row_count" type="number" list="max_r" min ="0" step="2" style="width: 80px;">
+                <datalist id = "max_r">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                </datalist>
+
+                <label>Format type</label>
+                <select id = "format_type">
+                        <option value="def">default</option>
+                        <option value="word">by words</option>
+                        <option value="symbol">by symbols</option>
+                        <option value="sentence">by sentences</option>
+                        
+                </select>
+
+                <button id="format_sentence" >Format</button>
+
+                <p id="alert_max_length" style="color: red;">
+                   
+                </p>
+
+                <p id="max_row" style="color: red;">
+                   
+                </p>
+
+                <p id="result4">
+                   
+                </p>
+                
+    
+        </div>
+        <div class ="task" id = "t4">
+                <p>
+                        4 task: the program that takes an expression, 
+                        for example: "1" + "2" + "3", and calculates it 
+                </p>
+            <label for = "exp">Expression:</label>
+            <input id="exp" type="string"/>
+
+            <button id="calculate" >Calculate</button>
+
+            <p id="result5">   
+            </p>
+        </div>
+        <div class = "task" id = "t5">
+                <p>
+                        5 task: the program that takes an array and 
+                        sorts it using bubble sort, quick sort 
+                        selection sort or insertion sort 
+                </p>
+                <label for = "array">Array:</label>
+                <input id="array" type="string" style="width: 100px;">
+
+
+                <label>Sort type</label>
+                <select id = "sort_type">
+                        <option value="bubble">bubble sort</option>
+                        <option value="quicksort">quick sort</option>
+                        <option value="selectsort">selection sort</option>
+                        <option value="insertsort">insertion sort</option>
+                </select>
+
+                
+
+                <button id="sort" >Sort</button>
+
+                <p id="result_type_sort">
+                   
+                </p>
+
+                <p id="result_array">
+                   
+                </p>
+        </div>
+        <div class = "task" id = "t6">
+                <p>
+                        6 task: the program that takes a number in
+                        one number system and translates it into another
+                </p>
+                <label for = "string2">number:</label>
+                <input id="string2" type="string" style="width: 80px;">
+
+
+                <label for = "system_from">from system:</label>
+                <input id="system_from" type="number" list="data" min ="2" step="2" style="width: 80px;">
+                <datalist id = "data">
+                        <option value="2">2</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="16">16</option>
+                </datalist>
+
+                <label for = "system_to">from system:</label>
+                <input id="system_to" type="number" list="syst_to" min ="2" step="2" style="width: 80px;">
+                <datalist id = "syst_to">
+                        <option value="2">2</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="16">16</option>
+                </datalist>
+
+                <button id="convert" >Convert</button>
+
+                <p id="result_number">
+                   
+                </p>
+        </div>
+        <div class = "task" id = "t7">
+                <p>
+                        7 task: the program that performs calculations 
+                        and stores the result in a cache
+                </p>
+                <input id="first_operand" type="number" min="1" max="1000" step="1">
+    
+                <select id="operation_select" style="width: 100px;">
+                    <option value="sum">+</option>
+                    <option value="dif">-</option>
+                    <option value="mul">*</option>
+                    <option value="div">/</option>  				
+                </select>
+    
+                <input id="second_operand" type="number" min="1" max="1000" step="1">
+    
+                <button id="calculateop" >Calculate</button>
+               
+    
+                <p id="result_calculation">
+    
+                </p>
+    
+                <span id="from_cache">
+                    
+                </span>
+        </div>
+            
+    
+        
+        <script type="text/javascript"  src ="scripts1/search.js"></script>
+        <script type="text/javascript"  src ="scripts1/selectMax.js"></script>
+        <script type="text/javascript"  src ="scripts1/subSum.js"></script>
+        <script type="text/javascript"  src ="scripts1/handler1.js"></script> 
+
+        <script type="text/javascript"  src ="scripts2/dateFormat.js"></script>
+        <script type="text/javascript"  src ="scripts2/handler2.js"></script> 
+
+        <script type="text/javascript"  src ="scripts3/formatter.js"></script>
+        <script type="text/javascript"  src ="scripts3/handler3.js"></script> 
+
+        <script type="text/javascript"  src ="scripts4/stringCalculator.js"></script>
+        <script type="text/javascript"  src ="scripts4/handler4.js"></script> 
+
+        <script type="text/javascript"  src ="scripts5/sort.js"></script>
+        <script type="text/javascript"  src ="scripts5/handler5.js"></script>
+
+        <script type="text/javascript"  src ="scripts6/converter.js"></script>
+        <script type="text/javascript"  src ="scripts6/handler6.js"></script>
+
+        <script type="text/javascript"  src ="scripts7/handler7.js"></script>
+        <script type="text/javascript"  src ="scripts7/calculator.js"></script>
+        <script type="text/javascript"  src ="scripts7/main.js"></script>
+    </body>    
+</html>
