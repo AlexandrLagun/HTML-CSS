@@ -28,6 +28,14 @@ function fromAnyToAny(numVector, systemFrom, systemTo) {
 //console.log(fromAnyToAny([1,0,1,1], 2, 10));
 
 function convertFromVector(string) {
+    if(isNaN(Number(string))) {
+        return string; 
+    }
+    
+        
+      
+
+   
     var vector = string.split(",");
     var str = "";
     var ch = "";
