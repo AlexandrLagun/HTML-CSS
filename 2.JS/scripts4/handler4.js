@@ -65,8 +65,12 @@ var calculateButton = document.getElementById('calculate');
             
              
            
-        document.getElementById('result5').innerHTML = `Result: ${result}`;
-        
+        var el4 = document.getElementById('result5');
+        if (isNaN(result)) { 
+            el4.innerHTML = `Mistake: Incorrect input.`;
+        } else {
+            el4.innerHTML = `Result: ${result}`;
+        }
         });
 
 

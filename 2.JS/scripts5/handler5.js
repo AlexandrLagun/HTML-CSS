@@ -5,14 +5,11 @@ var sortButton = document.getElementById('sort');
             var sortType  = document.getElementById('sort_type').value;
             var arr = str.split(",");
             
-            for (var i = 0; i < arr.length; i++) {
-                arr[i] = parseInt(arr[i], 10);
-            }
 
             try {
                 for(var k = 0; k < arr.length; k++ ) {
                     if (isNaN(arr[k])) 
-                        throw new Error('Incorrect data!');
+                        throw new Error('Incorrect array!');
                 }
                 var result = "";
                 var type = "";
