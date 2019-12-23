@@ -1,9 +1,10 @@
 function search(arr) {
-    var max=0;
-    var min=0;
+    var max = arr[0];
+    var min = arr[0];
     var sum  = 0;
    
     for (var i = 0; i < arr.length; i++) {
+        
         sum += arr[i];
         if (arr[i] > arr[i-1]) {
             max = arr[i];
@@ -20,6 +21,6 @@ function search(arr) {
     //console.log(`max = ${max}, min = ${min},  median = ${median}`);
 }
 
-//search([1,2,3,-10]);
+//search([1,2,3]);
 
 

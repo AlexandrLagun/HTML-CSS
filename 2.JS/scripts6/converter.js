@@ -1,3 +1,4 @@
+
 //функция перевода из двоичной в десятичную
 function fromBinToDec(binVector) {
     var bin = convertFromVector(binVector);
@@ -28,7 +29,15 @@ function fromAnyToAny(numVector, systemFrom, systemTo) {
 //console.log(fromAnyToAny([1,0,1,1], 2, 10));
 
 function convertFromVector(string) {
+    
     var vector = string.split(",");
+
+    if(isNaN(Number(string)) && vector.length == 1) {
+        return string; 
+    }
+
+
+
     var str = "";
     var ch = "";
     for(var i = vector.length -1; i >= 0; i--) {
@@ -36,6 +45,11 @@ function convertFromVector(string) {
        ch = vector[i].toString(); 
        str += ch; 
     }
+
+    if (isNaN(Number(str))) {
+        return str;
+    }
+
     var num = Number(str);
     return num;
     

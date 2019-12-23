@@ -2,9 +2,16 @@
 <html>
     <head>
         <title>2 Tasks JS</title> 
+        <link rel="stylesheet" type="text/css" href="styles.css"> 
     </head>
     <body>
-        <div>
+        <div class ="task" id ="t1">
+                <p>
+                        1 task: the program that finds the maximal 
+                        sum of a subsequence of an array; the maximum
+                         non-decreasing subsequence; min, max and medium 
+                         values of the entered array
+                </p>
                 <label for = "string">Array:</label>
                 <input id="string" type="string" style="width: 100px;"/>
                 <div>
@@ -22,7 +29,10 @@
                     <p id="result2" > </p> 
                 </div>   
         </div>
-        <div class = "2task">
+        <div class = "task" id = "t2">
+                        <p>
+                                2 task: the program that takes a date in one format and returns it in another
+                        </p>
                 <label for = "date">Date:</label>
                 <input id="date" type="string" style="width: 80px;">
 
@@ -67,7 +77,12 @@
                    
                 </div>
         </div>
-        <div class ="3task">
+        <div class ="task" id = "t3">
+                <p>
+                       3 task: the program that takes a string and wraps it by 
+                       words, symbols or sentences. The program can check the result for  
+                       the maximum length and maximum number of columns
+                </p>
                 <label for = "string1">String:</label>
                 <input id="string1" type="string">
 
@@ -115,7 +130,11 @@
                 
     
         </div>
-        <div class ="4task">
+        <div class ="task" id = "t4">
+                <p>
+                        4 task: the program that takes an expression, 
+                        for example: "1" + "2" + "3", and calculates it 
+                </p>
             <label for = "exp">Expression:</label>
             <input id="exp" type="string"/>
 
@@ -124,7 +143,12 @@
             <p id="result5">   
             </p>
         </div>
-        <div class = "5task">
+        <div class = "task" id = "t5">
+                <p>
+                        5 task: the program that takes an array and 
+                        sorts it using bubble sort, quick sort, 
+                        selection sort or insertion sort 
+                </p>
                 <label for = "array">Array:</label>
                 <input id="array" type="string" style="width: 100px;">
 
@@ -149,7 +173,11 @@
                    
                 </p>
         </div>
-        <div class = "6tasks">
+        <div class = "task" id = "t6">
+                <p>
+                        6 task: the program that takes a number in
+                        one number system and translates it into another
+                </p>
                 <label for = "string2">number:</label>
                 <input id="string2" type="string" style="width: 80px;">
 
@@ -163,7 +191,7 @@
                         <option value="16">16</option>
                 </datalist>
 
-                <label for = "system_to">from system:</label>
+                <label for = "system_to">to system:</label>
                 <input id="system_to" type="number" list="syst_to" min ="2" step="2" style="width: 80px;">
                 <datalist id = "syst_to">
                         <option value="2">2</option>
@@ -177,9 +205,13 @@
                 <p id="result_number">
                    
                 </p>
+                
         </div>
-        <div class = "7task">
-            
+        <div class = "task" id = "t7">
+                <p>
+                        7 task: the program that performs calculations 
+                        and stores the result in a cache
+                </p>
                 <input id="first_operand" type="number" min="1" max="1000" step="1">
     
                 <select id="operation_select" style="width: 100px;">

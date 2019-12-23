@@ -3,53 +3,54 @@ var calculateButton = document.getElementById('calculate');
         function () {
             var str  = document.getElementById('exp').value;
             var arr = [];
+        try {
             if  (str.indexOf("+") !== -1) {
-                if (str.split(" + ") == str) {
                     arr = str.split("+");
-                } else {
-                    arr = str.split(" + ");
-                }
+            } else if  (str.indexOf("-") !== -1) {
+                arr = str.split("-");
+            } else if  (str.indexOf("*") !== -1) {
+                arr = str.split("*");
+            } else if  (str.indexOf("/") !== -1) {
+                arr = str.split("/");
+            } else {
+                throw new Error("Mistake1! There is no any math operation");
             }
-            if  (str.indexOf("-") !== -1) {
-                if (str.split(" - ") == str) {
-                    arr = str.split("-");
-                } else {
-                    arr = str.split(" - ");
+        } catch (e) {
+            document.getElementById('result5').innerHTML = e.message;
+
+        }
+            var resArr = [];
+
+            for (var j = 0; j < arr.length; j++) {
+
+                if(arr[j].indexOf('\'') !== -1) {
+                    var fst = arr[j].indexOf('\'');
+                    var scd = arr[j].indexOf('\'', fst+1);  
                 }
-            }
-            if  (str.indexOf("*") !== -1) {
-                if (str.split(" * ") == str) {
-                    arr = str.split("*");
-                } else {
-                    arr = str.split(" * ");
-                }
-            }
-            if  (str.indexOf("/") !== -1) {
-                if (str.split(" / ") == str) {
-                    arr = str.split("/");
-                } else {
-                    arr = str.split(" / ");
-                }
+                if(arr[j].indexOf('\"') !== -1) {
+                    var fst = arr[j].indexOf('\"');
+                    var scd = arr[j].indexOf('\"', fst+1);  
+                } 
+
+                resArr.push(arr[j].slice(fst+1, scd));
+                
+                
             }
            
-
-            for (var i = 0; i < arr.length; i++) {
-            arr[i] = Number(arr[i].slice(1, arr[i].length - 1));
-            }
 
             var result = "";
 
             if  (str.indexOf("+") !== -1) {
-                result = sum(...arr);
+                result = sum(...resArr);
             }
             if  (str.indexOf("-") !== -1) {
-                result = dif(...arr);
+                result = dif(...resArr);
             }
             if  (str.indexOf("*") !== -1) {
-                result = mul(...arr);
+                result = mul(...resArr);
             }
             if  (str.indexOf("/") !== -1) {
-                result = div(...arr);
+                result = div(...resArr);
             }
             
             if (result != result.toFixed(0)) {
@@ -64,6 +65,12 @@ var calculateButton = document.getElementById('calculate');
             
              
            
-        document.getElementById('result5').innerHTML = `Result: ${result}`;
-        
+        var el4 = document.getElementById('result5');
+        if (isNaN(result)) { 
+            el4.innerHTML = `Mistake: Incorrect input.`;
+        } else {
+            el4.innerHTML = `Result: ${result}`;
+        }
         });
+
+

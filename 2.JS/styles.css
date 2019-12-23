@@ -1,0 +1,27 @@
+.task{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 20px 20px;
+    padding: 20px 20px;
+}
+#t1 {
+    width: 230px;
+}
+#t2 {
+    width: 550px;
+}
+#t3 {
+    width: 450px;
+}
+#t4 {
+    width: 350px;
+}
+#t5 {
+    width: 400px;
+}
+#t6 {
+    width: 330px;
+}
+#t7 {
+    width: 380px;
+}

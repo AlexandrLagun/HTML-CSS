@@ -66,14 +66,16 @@ console.log(rs);
     for (var i = 0; i < arr.length; i++){ 
       var min = i; 
       for (var j = i + 1; j < arr.length; j++){ 
-        if (arr[j] < arr[min]) min = j; 
+        if (arr[j] < arr[min]) {min = j}; 
+      }
+        if ( min != i) {
         var tmp = arr[i]; arr[i] = arr[min]; arr[min] = tmp; 
       }
     }
     return arr;
   };
 
-  //  console.log(selectionSort([1,2,3,8,4,7,6,2]));
+   //console.log(selectionSort([1,5,2,3,-5,0,12,20]));
 
  
 

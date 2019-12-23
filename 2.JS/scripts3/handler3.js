@@ -5,7 +5,7 @@ var formatButton = document.getElementById('format_sentence');
             var maxLength  = document.getElementById('max_length').value;
             var maxRows  = document.getElementById('max_row_count').value;
             var formatType  = document.getElementById('format_type').value;
-
+           
             if (maxLength !== undefined && maxLength > 0) {
                 var elem1 = document.getElementById('alert_max_length');
                 if (str.length > maxLength) { 
@@ -16,7 +16,7 @@ var formatButton = document.getElementById('format_sentence');
             } 
              
             var result = textHandler(str, maxLength, maxRows, formatType);
-
+           
             document.getElementById('result4').innerHTML = `Result: <br/><br/>${result}`;
 
             if (maxRows !== undefined && maxRows > 0) {
