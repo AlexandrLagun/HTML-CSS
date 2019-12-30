@@ -1,22 +1,28 @@
-function Handler () { 
-	
-	this.run = function (calculator, document) {
-		document.getElementById('from_cache').style.display = '';
-		var firstOperand  = parseInt(document.getElementById('first_operand').value);
-		var secondOperand = parseInt(document.getElementById('second_operand').value);
+var calculateButton = document.getElementById('calculateop');
+calculateButton.addEventListener( 'click', 
+    function () {
+		var firstOperand  = parseFloat(document.getElementById('first_operand').value);
+		var secondOperand = parseFloat(document.getElementById('second_operand').value);
 		
-		var operationName = document.getElementById('operation_select').value;
+        var operationName = document.getElementById('operation_select').value;
+        document.getElementById('result_calculation').innerHTML = '';
+        document.getElementById('from_cache').innerHTML = '';
 
-		document.getElementById('result_calculation').innerHTML = 
-			calculator.operation(firstOperand, secondOperand, operationName);
 
-		var message = '';
-		if (calculator.isResultFromCache()){
-			message = 'Result was taken from cache';
-		} else {
-			message = 'Calculated result';
-		}
+        var result = objCalculate.operation(firstOperand, secondOperand, operationName);
+        if (isNaN(result)) {
+            document.getElementById('result_calculation').innerHTML = "Enter both operands!";
 
-		document.getElementById('from_cache').innerHTML = message;
-	};
-}
+        } else {
+            document.getElementById('result_calculation').innerHTML = result;
+            
+            var message = '';
+            if (isFromCache){
+                message = 'Result was taken from cache';
+            } else {
+                message = 'Calculated result';
+            }
+
+            document.getElementById('from_cache').innerHTML = message;
+        }    	
+});

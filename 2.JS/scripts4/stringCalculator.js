@@ -5,8 +5,8 @@ function sum() {
     }
     return sumValue;
 }
-var s = sum('1','2','3','4');
-console.log(s);
+//var s = sum('1','2','3','4');
+//console.log(s);
 
 function mul() {
     var mulValue = 1;
@@ -35,12 +35,13 @@ function div() {
 }
 //div('24','2','3','2');
 
-var obj = {
+var obj4 = {
     sum: sum,
     dif: dif,
     mul: mul,
     div: div
 }
 
-obj.dif('24', '1.5456', '3.3541');
+//var res = obj4.sum('24', '1.5456', '3.3541');
+//console.log(res);
 

@@ -56,9 +56,9 @@ function convertFromVector(string) {
 }
 //console.log(convertFromVector([1,2,3]));
 
-var objConvert = {
+var obj6 = {
     binToDec: fromBinToDec,
-    decToDec: fromDecToBin,
+    decToBin: fromDecToBin,
     anyToAny: fromAnyToAny
 }
 

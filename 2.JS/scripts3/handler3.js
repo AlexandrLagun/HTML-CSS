@@ -18,6 +18,9 @@ var formatButton = document.getElementById('format_sentence');
             var result = textHandler(str, maxLength, maxRows, formatType);
            
             document.getElementById('result4').innerHTML = `Result: <br/><br/>${result}`;
+            if (str === "") {
+                document.getElementById('result4').innerHTML = `Please, enter a string`;
+            }
 
             if (maxRows !== undefined && maxRows > 0) {
                 var lines = result.split('<br/>').length;

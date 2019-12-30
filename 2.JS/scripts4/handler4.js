@@ -2,23 +2,11 @@ var calculateButton = document.getElementById('calculate');
     calculateButton.addEventListener( 'click', 
         function () {
             var str  = document.getElementById('exp').value;
+            var op = document.getElementById("operation_type").value;
             var arr = [];
-        try {
-            if  (str.indexOf("+") !== -1) {
-                    arr = str.split("+");
-            } else if  (str.indexOf("-") !== -1) {
-                arr = str.split("-");
-            } else if  (str.indexOf("*") !== -1) {
-                arr = str.split("*");
-            } else if  (str.indexOf("/") !== -1) {
-                arr = str.split("/");
-            } else {
-                throw new Error("Mistake1! There is no any math operation");
-            }
-        } catch (e) {
-            document.getElementById('result5').innerHTML = e.message;
 
-        }
+            arr = str.split(",");
+
             var resArr = [];
 
             for (var j = 0; j < arr.length; j++) {
@@ -33,24 +21,21 @@ var calculateButton = document.getElementById('calculate');
                 } 
 
                 resArr.push(arr[j].slice(fst+1, scd));
-                
-                
             }
            
-
             var result = "";
 
-            if  (str.indexOf("+") !== -1) {
-                result = sum(...resArr);
+            if (op === "sum") {
+                result = obj4.sum(...resArr);
             }
-            if  (str.indexOf("-") !== -1) {
-                result = dif(...resArr);
+            if (op === "dif") {
+                result = obj4.dif(...resArr);
             }
-            if  (str.indexOf("*") !== -1) {
-                result = mul(...resArr);
+            if (op === "mul") {
+                result = obj4.mul(...resArr);
             }
-            if  (str.indexOf("/") !== -1) {
-                result = div(...resArr);
+            if (op === "div") {
+                result = obj4.div(...resArr);
             }
             
             if (result != result.toFixed(0)) {
@@ -61,16 +46,16 @@ var calculateButton = document.getElementById('calculate');
             if(strResult.length > 8) {
                 result = result.toExponential(4);
             }
-            
-            
-             
-           
-        var el4 = document.getElementById('result5');
-        if (isNaN(result)) { 
-            el4.innerHTML = `Mistake: Incorrect input.`;
-        } else {
-            el4.innerHTML = `Result: ${result}`;
-        }
-        });
 
+            var el4 = document.getElementById('result5');
 
+       
+            if (str === "") { 
+                el4.innerHTML = `Mistake: There is no any expression.`;
+            } else 
+            if (isNaN(result)) {
+                el4.innerHTML = `Mistake: Incorrect input.`;
+            } else el4.innerHTML = `Result: ${result}`;
+            });
+
+        

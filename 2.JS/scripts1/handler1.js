@@ -1,3 +1,9 @@
+var obj1 = {
+    findMaxSumLow: getMaxSubSumLow,
+    findMaxSumFast: getMaxSubSumFast,
+    findMaxIncreaseSeq: maxIncreaseSeq,
+    search: search
+}
 
 var findMaxSumButton = document.getElementById('subMaxSum');
 findMaxSumButton.addEventListener( 'click', 
@@ -16,15 +22,23 @@ findMaxSumButton.addEventListener( 'click',
                     if (isNaN(art[k])) 
                         throw new Error('Incorrect data!');
                 }
-                var res1 = getSeqMaxSum( art );
+                var res1 = obj1.findMaxSumFast( art );
                 
-                var el1 = document.getElementById("result"); 
-                el1.innerHTML = res1;
-        }  catch (e) {
-            var el1 = document.getElementById("result"); 
-            el1.innerHTML = e.message;
+                var el = document.getElementById("result"); 
+                el.innerHTML = res1;
+        }   catch (e) {
+            var el = document.getElementById("result"); 
+            el.innerHTML = e.message;
         } 
-
+     
+        try {
+            if (strArr === "") {
+                throw new Error("Empty string!");
+            }
+        }   catch(e1) {
+            var el = document.getElementById("result"); 
+            el.innerHTML = e1.message;
+        }
 
         
 });
@@ -47,14 +61,23 @@ var findMaxSeqButton = document.getElementById('selectMaxSeq');
                         throw new Error('Incorrect data!');
                 }
                
-                var res = maxIncreaseSeq( art );
+                var res = obj1.findMaxIncreaseSeq( art );
                 
-                var el2 = document.getElementById("result1"); 
-                el2.innerHTML = res;
+                var el1 = document.getElementById("result1"); 
+                el1.innerHTML = res;
             }  catch (e) {
-                var el2 = document.getElementById("result1"); 
-                el2.innerHTML = e.message;
+                var el1 = document.getElementById("result1"); 
+                el1.innerHTML = e.message;
             } 
+
+            try {
+                if (strArr === "") {
+                    throw new Error("Empty string!");
+                }
+            }   catch(e1) {
+                var el1 = document.getElementById("result1"); 
+                el1.innerHTML = e1.message;
+            }
 
         }); 
 
@@ -76,14 +99,23 @@ var searchButton = document.getElementById('search');
                         throw new Error('Incorrect data!');
                 }
                
-                var res = search( art );
+                var res = obj1.search( art );
             
-                var el3 = document.getElementById("result2"); 
-                el3.innerHTML = "max = " + res[0] + ",  min = " + res[1] + ", medium = " + res[2];
+                var el2 = document.getElementById("result2"); 
+                el2.innerHTML = "max = " + res[0] + ",  min = " + res[1] + ", medium = " + res[2];
             }  catch (e) {
-                var el3 = document.getElementById("result2"); 
-                el3.innerHTML = e.message;
+                var el2 = document.getElementById("result2"); 
+                el2.innerHTML = e.message;
             } 
+
+            try {
+                if (strArr === "") {
+                    throw new Error("Empty string!");
+                }
+            }   catch(e1) {
+                var el2 = document.getElementById("result2"); 
+                el2.innerHTML = e1.message;
+            }
 
         }); 
 

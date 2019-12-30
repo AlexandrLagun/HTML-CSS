@@ -12,7 +12,7 @@ function bubbleSort(arr) {
     }
     return arr;
 }
-//console.log(bubbleSort([1,4,3,2,7,6]));
+//console.log(bubbleSort([1,4,3,2,7,6,12]));
 
 // quicksort  
 
@@ -56,9 +56,9 @@ function quickSort(arr, left, right) {
 }
 var arr = [1,3,2,7,6,5,18];
 var rs = quickSort( arr, 0, arr.length - 1,);
-console.log(rs);
+//console.log(rs);
 
-// selection sort (1 way)
+// selection sort 
 
 
   function selectionSort(arr){
@@ -92,4 +92,11 @@ console.log(rs);
     }
        return arr;
   }
-  //console.log(insertionSort([1,2,5,4,9,8,7]));
+  //console.log(insertionSort([1,2,12,5,4,9,8,7]));
+
+  var obj5 = {
+    bubbleSort: bubbleSort,
+    quickSort: quickSort,
+    selectionSort: selectionSort,
+    insertionSort: insertionSort
+  };

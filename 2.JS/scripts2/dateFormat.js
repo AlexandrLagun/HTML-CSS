@@ -1,64 +1,161 @@
-'use strict'
-function createDate(date, formatIn) {
-    if (formatIn !== undefined) {
 
+function createDate(date, formatIn) {
+        var dateInput;
         var restr1 = [ /DDMMYYYY/,/DD\.MM\.YYYY/, /DD\-MM\-YYYY/, 
                     /DD\/MM\/YYYY/, /DD\ MM\ YYYY/, /YYYY\.MM\.DD/, 
                     /YYYY\-MM\-DD/, /YYYY\/MM\/DD/, /YYYY\ MM\ DD/,
                     /YYYYMMDD/ ];
 
 
-        if (restr1[0].test(formatIn)) {
+        if (restr1[0].test(formatIn) && date.length == 8) {
             var year = date.slice(4,8);
             var month = Number(date.slice(2,4)) -1;
             var dat = date.slice(0,2);
-            return new Date(year, month, dat);
+            dateInput = new Date(year, month, dat);
         }
 
-        if (restr1[1].test(formatIn) || restr1[2].test(formatIn) || restr1[3].test(formatIn) || restr1[4].test(formatIn) )
-        {
-            var year = date.slice(6,10);
-            var month = Number(date.slice(3,5)) -1;
-            var dat = date.slice(0,2);
-            return new Date(year, month, dat);
+        if (restr1[1].test(formatIn) || restr1[2].test(formatIn) || restr1[3].test(formatIn) || restr1[4].test(formatIn) ) {
+
+            var indArr = [];
+            var ind = 0;
+            if (formatIn === 'DD.MM.YYYY') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === ".") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } else
+            if (formatIn === 'DD-MM-YYYY') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === "-") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } else
+            if (formatIn === 'DD/MM/YYYY') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === "/") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } else
+            if (formatIn === 'DD MM YYYY') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === " ") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } 
+
+            var year = date.slice(indArr[1] + 1);
+            var month = Number(date.slice(indArr[0] + 1, indArr[1])) -1;
+            var dat = date.slice(0, indArr[0]);
+
+            dateInput = new Date(year, month, dat);
         }
 
-        if (restr1[5].test(formatIn) || restr1[6].test(formatIn) || restr1[7].test(formatIn) || restr1[8].test(formatIn) )
-        {
-            var year = date.slice(0,4);
-            var month = Number(date.slice(5,7)) -1;
-            var dat = date.slice(8,10);
-            return new Date(year, month, dat);
+        if (restr1[5].test(formatIn) || restr1[6].test(formatIn) || restr1[7].test(formatIn) || restr1[8].test(formatIn) ) {
+            
+            var indArr = [];
+            var ind = 0;
+            if (formatIn === 'YYYY.MM.DD') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === ".") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } else
+            if (formatIn === 'YYYY-MM-DD') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === "-") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } else
+            if (formatIn === 'YYYY/MM/DD') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === "/") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            } else
+            if (formatIn === 'YYYY MM DD') {
+                for (i = 0; i < date.length; i++) {
+                    if (date[i] === " ") {
+                        indArr[ind] = i;
+                        ind++;
+                    }
+                }
+            }
+            
+            var dat = date.slice(indArr[1] + 1);
+            var month = Number(date.slice(indArr[0] + 1, indArr[1])) -1;
+            var year = date.slice(0, indArr[0]);
+
+            dateInput = new Date(year, month, dat);
         }
 
-        if (restr1[9].test(formatIn)  )
-        {
+        if (restr1[9].test(formatIn) && date.length == 8 ) {
             var year = date.slice(0,4);
             var month = Number(date.slice(4,6)) -1;
             var dat = date.slice(6,8);
-            return new Date(year, month, dat);
+            dateInput = new Date(year, month, dat);
         }
 
+        if (formatIn === 'number') {
+            dateInput = new Date(Number(date));
+        } 
+
+
+    if (Number(year < 0)) {
+        var el = document.getElementById("error3");
+        el.innerHTML = "Negative year!";
     }
 
-    if (typeof date == 'number') {
-        return new Date(date);
+    if (Number(year < 1000)) {
+        var el = document.getElementById("error3");
+        el.innerHTML = "Incorrect year!";
     }
 
-    var dat = date.slice(0,2);
-    var month =  Number(date.slice(2,4)) -1;
-    var year = date.slice(4,8);
-    return  new Date(year, month, dat);
+    if (month > 11 || month < 0)  {
+        var el = document.getElementById("error3");
+        el.innerHTML = "Incorrect month!";
+    }
+
+    if (dat > 31 || dat < 1)  {
+        var el = document.getElementById("error3");
+        el.innerHTML = "Incorrect date!";
+    }
+    
+    return dateInput;
+
+
+
+
 }
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-var d = createDate('20/11/2020', 'DD/MM/YYYY');
+//var d = createDate('40-1-2020', 'DD-MM-YYYY');
 
-console.log(d);
+//console.log(d);
 
-
+function fromNow (dateFrom) {
+    var d = dateFrom.getDate();
+    var m = dateFrom.getMonth();
+    var y = dateFrom.getFullYear();
+    var t = new Date(); 
+    var a = ( t.getFullYear() - y - ((t.getMonth() - --m || t.getDate() - d) < 0) );
+    return a;
+}
 
 
 function formatDate(d, formatOut) {
@@ -259,17 +356,6 @@ function formatDate(d, formatOut) {
 }
 
 
-var f = formatDate(d, 'DD-MMMM-YYYY');
-console.log(f);
-//console.log(typeof f);
+//var f = formatDate(d, 'DD-MMMM-YYYY');
+//console.log(f);
 
-
-
-
-
-
-/*var f = formatDate(d, 'DD/MMM/YYYY');
-console.log(f);
-
-var f = formatDate(d, 'DD-MMMM-YYYY');
-console.log(f);*/

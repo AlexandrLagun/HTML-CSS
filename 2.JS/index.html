@@ -37,7 +37,8 @@
                 <input id="date" type="string" style="width: 80px;">
 
                 <label id = "r">from format:</label> 
-                <select id = "date-from">  
+                <select id = "date-from"> 
+                        <option value="number">Milliseconds</option> 
                         <option value="DDMMYYYY">DDMMYYYY</option>
                         <option value="DD.MM.YYYY">DD.MM.YYYY</option>
                         <option value="DD-MM-YYYY">DD-MM-YYYY</option>
@@ -74,6 +75,13 @@
                 <button id="format" >Format date</button>
 
                 <div id="result3">
+                   
+                </div>
+                <div id="error3">
+                   
+                </div>
+                <label id = "fromnowlab">From now:</label> 
+                <div id = "fromnow">
                    
                 </div>
         </div>
@@ -132,11 +140,20 @@
         </div>
         <div class ="task" id = "t4">
                 <p>
-                        4 task: the program that takes an expression, 
-                        for example: "1" + "2" + "3", and calculates it 
+                        4 task: the program that takes a string, 
+                        for example: "1","2","3"  , and calculates it, 
+                        according chosen operation
                 </p>
             <label for = "exp">Expression:</label>
             <input id="exp" type="string"/>
+
+            <label>Operation type:</label>
+            <select id = "operation_type" style = "min-width: 50px;">
+                    <option value="sum">+</option>
+                    <option value="dif">-</option>
+                    <option value="mul">*</option>
+                    <option value="div">/</option>   
+            </select>
 
             <button id="calculate" >Calculate</button>
 
@@ -145,7 +162,7 @@
         </div>
         <div class = "task" id = "t5">
                 <p>
-                        5 task: the program that takes an array and 
+                        5 task: the program that takes an array for example: 1,2,4,3 and 
                         sorts it using bubble sort, quick sort, 
                         selection sort or insertion sort 
                 </p>
@@ -212,7 +229,7 @@
                         7 task: the program that performs calculations 
                         and stores the result in a cache
                 </p>
-                <input id="first_operand" type="number" min="1" max="1000" step="1">
+                <input id="first_operand" type="number" step="any" style="width: 80px;" >
     
                 <select id="operation_select" style="width: 100px;">
                     <option value="sum">+</option>
@@ -221,10 +238,37 @@
                     <option value="div">/</option>  				
                 </select>
     
-                <input id="second_operand" type="number" min="1" max="1000" step="1">
+                <input id="second_operand" type="number" step="any"  style="width: 80px;">
+    
+                <div id = "operation_cache">
+                    <p>Choose types of operations to cache</p>
+    
+                    <div>
+                        <input type="checkbox" id="sum" name="sum"
+                               checked>
+                        <label for="sum">"+"</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="dif" name="dif"
+                               checked>
+                        <label for="dif">"-"</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="mul" name="mul"
+                               checked>
+                        <label for="mul">"*"</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="div" name="div"
+                               checked>
+                        <label for="div">"/"</label>
+                    </div>
+                    <br/>
+                </div>
+               
     
                 <button id="calculateop" >Calculate</button>
-               
+            
     
                 <p id="result_calculation">
     
@@ -259,6 +303,5 @@
 
         <script type="text/javascript"  src ="scripts7/handler7.js"></script>
         <script type="text/javascript"  src ="scripts7/calculator.js"></script>
-        <script type="text/javascript"  src ="scripts7/main.js"></script>
     </body>    
 </html>
