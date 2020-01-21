@@ -10,8 +10,10 @@ class Forecast1Day extends React.Component {
 
   componentDidMount() {
     
-    const URL = "https://api.openweathermap.org/data/2.5/weather?q=minsk"+
-    "&units=metric&appid=1e4c421010fe9c56a53328876e017b5c";
+    let place = this.props.place;
+
+    const URL = `https://api.openweathermap.org/data/2.5/weather?q=${place}
+    &units=metric&appid=1e4c421010fe9c56a53328876e017b5c`;
     fetch(URL).then(res => res.json()).then(data => {
       this.setState({ weatherData: data });
     });
@@ -24,7 +26,7 @@ class Forecast1Day extends React.Component {
 return (
   <div>
     <h1>
-      {weather.main} in {weatherData.name}
+      {weather.main} in {weatherData.name} and {this.props.place}
       <img src={imgUrl} alt={weatherData.description} />
     </h1>
     <p>Current: {weatherData.main.temp}°</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import WeatherDisplayForecast from './WeatherDisplayForecast';
+import InputLocation from './InputLocation';
 import Forecast1Day from './Forecast1Day';
 import Forecast5Days from './Forecast5Days';
 
@@ -15,12 +15,18 @@ class WeatherApp extends React.Component{
     super();
     this.state = {
       activeForecast: 0,
-      city: "Minsk"
+      city: "Baranovichi"
     };
+    this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
 
+  handleLocationChange(location) {
+    this.setState({city: location})
+  }
+
   render() {
+    const city  = this.state.city;
     const activeForecast = this.state.activeForecast;
     let daysCount = 0;
     switch(activeForecast) {
@@ -31,7 +37,8 @@ class WeatherApp extends React.Component{
       default: daysCount = 1;
       break;
     }
-    const forecast = (daysCount === 1) ? (<Forecast1Day />) : (<Forecast5Days />);
+    const forecast = (daysCount === 1) ? (<Forecast1Day place={city} />) : (<Forecast5Days place={city} />);
+
     return  (
     <div>
       <Header />
@@ -46,7 +53,7 @@ class WeatherApp extends React.Component{
         ))}
       </div>
 
-      <WeatherDisplayForecast days={daysCount} />
+      <InputLocation days={daysCount} onChange = {this.handleLocationChange} />
       {forecast}
       
     </div>
