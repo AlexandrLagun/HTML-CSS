@@ -26,14 +26,14 @@ class Forecast1Day extends React.Component {
 return (
   <div>
     <h1>
-      {weather.main} in {weatherData.name} and {this.props.place}
+      {weather.main} in {weatherData.name} 
       <img src={imgUrl} alt={weatherData.description} />
     </h1>
     <p>Current: {weatherData.main.temp}°</p>
     <p>Feels like: {weatherData.main.feels_like}°</p>
     <p>High: {weatherData.main.temp_max}°</p>
     <p>Low: {weatherData.main.temp_min}°</p>
-    <p>Wind Speed: {weatherData.wind.speed} mi/hr</p>
+    <p>Wind Speed: {(weatherData.wind.speed*1.6/3.6).toFixed(2)} m/s</p>
     <p>Pressure: {weatherData.main.pressure} GPa</p>
     <p>Humidity: {weatherData.main.humidity} %</p>
   </div>

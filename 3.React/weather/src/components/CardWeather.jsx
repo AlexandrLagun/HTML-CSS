@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/CardWeather.css';
 
 
 class CardWeather extends React.Component {
@@ -15,7 +16,7 @@ class CardWeather extends React.Component {
         const imgUrl = "http://openweathermap.org/img/w/" + this.props.day.weather[0].icon + ".png";
 
     return (
-      <div>
+      <div class="cardWeather">
         <h2>{weekday} - {month} {dat}</h2>
         <h3>{this.props.day.weather[0].main} in {this.props.data.city.name}
         <img src={imgUrl} alt={ this.props.day.weather[0].icon.description} />
@@ -24,7 +25,7 @@ class CardWeather extends React.Component {
         <p>Temperature: {Math.round(this.props.day.main.temp)} °C</p>
         <p>Humidity: {this.props.day.main.humidity} %</p>
         <p>Pressure: {this.props.day.main.pressure} GPa</p>
-        <div className="card-body">
+        <div>
           {this.props.day.weather[0].description}
         </div>
       </div>

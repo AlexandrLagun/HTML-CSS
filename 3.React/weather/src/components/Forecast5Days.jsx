@@ -30,17 +30,13 @@ class Forecast5Days extends React.Component {
   render() {
     return (
     <div>
+  
       <div>
       {this.formatForecast()}
       </div>
     </div>
     );
   }
-
 }
 
 export default Forecast5Days;
-
-//<div>
-//{this.formatForecast()}
-//</div>

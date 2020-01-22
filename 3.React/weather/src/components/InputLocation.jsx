@@ -5,16 +5,10 @@ class InputLocation extends React.Component{
     super();
     this.state = {location: ""};
     this.handleChange = this.handleChange.bind(this);
+  }
 
-    }
-
- // componentDidMount() {
- //   const days = this.props.days;
-
-  //}
   handleChange(e) {
-    this.props.onChange(e.target.value);
-    
+    this.props.onChange(e.target.value);   
   }
 
   render() {
