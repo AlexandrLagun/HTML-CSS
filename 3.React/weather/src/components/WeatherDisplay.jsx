@@ -10,8 +10,8 @@ const FORECASTS = [
    ];
 
 class WeatherDisplay extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       activeForecast: 0
       
@@ -37,7 +37,7 @@ class WeatherDisplay extends React.Component{
       
       <div>
         {FORECASTS.map((forecast, index) => (
-          <button class="changeButton"
+          <button className="changeButton"
             key={index}
             onClick={() => {this.setState({activeForecast: index})}}
           >

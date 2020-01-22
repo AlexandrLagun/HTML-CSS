@@ -1,8 +1,8 @@
 import React from 'react';
 
 class InputLocation extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {location: ""};
     this.handleChange = this.handleChange.bind(this);
   }
@@ -27,6 +27,8 @@ class InputLocation extends React.Component{
               value={this.state.term}
               onChange={this.handleChange}
             />
+            <div id="error">
+            </div>
           </div>
         </form>
         </div>

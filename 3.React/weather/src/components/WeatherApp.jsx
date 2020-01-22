@@ -9,7 +9,7 @@ class WeatherApp extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-     city: "Minsk"
+     city: ""
     };
     this.handleInputChange=this.handleInputChange.bind(this);
   }
@@ -17,17 +17,20 @@ class WeatherApp extends React.Component{
 
   handleInputChange(val){
     this.setState({city: val})
+   
+
   }
- 
 
   render() {
+     
+    const city = this.state.city;
     
     return  (
     <div>
       <Header />
-      <div class="main-article">
+      <div className="main-article">
       <InputLocation onChange={this.handleInputChange}/>
-      <WeatherDisplay place={this.state.city}/>
+      <WeatherDisplay place={city}/>
       </div>
     </div>
     );

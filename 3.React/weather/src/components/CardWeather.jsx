@@ -16,7 +16,7 @@ class CardWeather extends React.Component {
         const imgUrl = "http://openweathermap.org/img/w/" + this.props.day.weather[0].icon + ".png";
 
     return (
-      <div class="cardWeather">
+      <div className="cardWeather">
         <h2>{weekday} - {month} {dat}</h2>
         <h3>{this.props.day.weather[0].main} in {this.props.data.city.name}
         <img src={imgUrl} alt={ this.props.day.weather[0].icon.description} />
