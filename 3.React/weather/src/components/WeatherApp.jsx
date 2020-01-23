@@ -17,20 +17,58 @@ class WeatherApp extends React.Component{
 
   handleInputChange(val){
     this.setState({city: val})
-   
+    
+    const URL1 = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=1e4c421010fe9c56a53328876e017b5c`;
+
+    fetch(URL1).then(response => {
+      if(response.ok) {
+        response.json().then(data => {
+          this.setState({ weatherData1day: data });
+        });
+      } else {
+        console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+      }
+    });
+
+    /*
+    fetch(URL).then(res => res.json()).then(data => {
+      this.setState({ weatherData: data });
+    }).catch(e => console.log(e));
+    */
+
+    const URL5 = `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&units=metric&appid=1e4c421010fe9c56a53328876e017b5c`;
+
+    fetch(URL5).then(response => {
+      if(response.ok) {
+        response.json().then(data => {
+          const daily5forecast = data.list.filter(reading => reading.dt_txt.includes("12:00:00"));
+          this.setState({ weatherData5days: daily5forecast, mainData5days: data });
+        });
+      } else {
+        console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+      }
+    });
+
+    /*
+    fetch(URL).then(res =>   res.json()).then(data => {
+      const daily5forecast = data.list.filter(reading => reading.dt_txt.includes("12:00:00"))
+      this.setState({ weatherData: daily5forecast, mainData: data });
+    });*/
 
   }
 
   render() {
-     
-    const city = this.state.city;
     
+    const forecast1DayData = this.state.weatherData1day;
+    const forecast5DayData = this.state.weatherData5days;
+    const main5DaysData = this.state.mainData5days;
+
     return  (
     <div>
       <Header />
       <div className="main-article">
       <InputLocation onChange={this.handleInputChange}/>
-      <WeatherDisplay place={city}/>
+      <WeatherDisplay forecastData1Day={forecast1DayData} forecastData5Days={forecast5DayData} main5DaysData={main5DaysData}/>
       </div>
     </div>
     );

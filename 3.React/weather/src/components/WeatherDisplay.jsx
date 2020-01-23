@@ -5,8 +5,8 @@ import '../styles/WeatherDisplay.css';
 
 
 const FORECASTS = [
-  "forecast for 1 day",
-  "forecast for 5 days"
+  "Forecast for 1 day",
+  "Forecast for 5 days"
    ];
 
 class WeatherDisplay extends React.Component{
@@ -30,7 +30,11 @@ class WeatherDisplay extends React.Component{
       default: daysCount = 1;
       break;
     }
-    const forecast = (daysCount === 1) ? (<Forecast1Day place={this.props.place} />) : (<Forecast5Days place={this.props.place} />);
+
+    const forecast1Day = <Forecast1Day data={this.props.forecastData1Day} />
+    const forecast5Days = <Forecast5Days data={this.props.forecastData5Days} main5Days={this.props.main5DaysData}/>
+   
+    const forecast = (daysCount === 1) ? forecast1Day : forecast5Days;
 
     return  (
     <div>
