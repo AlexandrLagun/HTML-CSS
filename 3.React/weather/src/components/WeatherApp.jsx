@@ -26,7 +26,7 @@ class WeatherApp extends React.Component{
           this.setState({ weatherData1day: data });
         });
       } else {
-        console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+        console.log('Network request for json failed with response ' + response.status + ': ' + response.statusText);
       }
     });
 
@@ -45,7 +45,7 @@ class WeatherApp extends React.Component{
           this.setState({ weatherData5days: daily5forecast, mainData5days: data });
         });
       } else {
-        console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+        console.log('Network request for json failed with response ' + response.status + ': ' + response.statusText);
       }
     });
 
