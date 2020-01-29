@@ -9,7 +9,7 @@ class WeatherApp extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-     city: ""
+     city: "Minsk"
     };
     this.handleInputChange=this.handleInputChange.bind(this);
   }
