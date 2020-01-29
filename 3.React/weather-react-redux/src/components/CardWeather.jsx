@@ -1,9 +1,8 @@
 import React from 'react';
-//import '../styles/CardWeather.css';
+import '../styles/CardWeather.css';
 
 
 class CardWeather extends React.Component {
-  // Props: day, key(index)
 
   render() {    
     const ms = this.props.day.dt * 1000;
@@ -18,7 +17,7 @@ class CardWeather extends React.Component {
     return (
       <div className="cardWeather">
         <h2>{weekday} - {month} {dat}</h2>
-        <h3>{this.props.day.weather[0].main} in 
+        <h3>{this.props.day.weather[0].main} in {this.props.city}
         <img src={imgUrl} alt={ this.props.day.weather[0].icon.description} />
         </h3>
         

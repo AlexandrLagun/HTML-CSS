@@ -1,9 +1,7 @@
 import React from 'react';
 import Forecast1Day from './Forecast1Day';
 import Forecast5Days from './Forecast5Days';
-//import Forecast1Day from './Forecast1Day';
-//import Forecast5Days from './Forecast5Days';
-//import '../styles/WeatherDisplay.css';
+import '../styles/WeatherDisplay.css';
 
 
 const FORECASTS = [
@@ -30,7 +28,7 @@ class WeatherDisplay extends React.Component{
     }
 
     const forecast1Day = <Forecast1Day data={this.props.forecast1Day} />
-    const forecast5Days = <Forecast5Days data={this.props.forecast5Days} main5Days={this.props.main5DaysData}/>
+    const forecast5Days = <Forecast5Days data={this.props.forecast5Days} city={this.props.city}/>
    
     const forecast = (daysCount === 1) ? forecast1Day : forecast5Days;
 
