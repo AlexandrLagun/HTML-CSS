@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/CardWeather.css';
 
-
 class CardWeather extends React.Component {
 
   render() {    
@@ -10,7 +9,6 @@ class CardWeather extends React.Component {
     const weekday = date.toLocaleString("en", {weekday: "long"});
     const month = date.toLocaleString("en", {month: "long"});
     const dat = date.getDate().toString();
-
 
         const imgUrl = "http://openweathermap.org/img/w/" + this.props.day.weather[0].icon + ".png";
 
@@ -33,4 +31,3 @@ class CardWeather extends React.Component {
 }
 
 export default CardWeather
-//{this.props.data.city.name}

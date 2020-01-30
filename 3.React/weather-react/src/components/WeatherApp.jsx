@@ -4,7 +4,6 @@ import InputLocation from './InputLocation';
 import WeatherDisplay from './WeatherDisplay';
 import '../styles/WeatherApp.css';
 
-
 class WeatherApp extends React.Component{
   constructor(props) {
     super(props);
@@ -13,7 +12,6 @@ class WeatherApp extends React.Component{
     };
     this.handleInputChange=this.handleInputChange.bind(this);
   }
-
 
   handleInputChange(val){
     this.setState({city: val})
@@ -30,12 +28,6 @@ class WeatherApp extends React.Component{
       }
     });
 
-    /*
-    fetch(URL).then(res => res.json()).then(data => {
-      this.setState({ weatherData: data });
-    }).catch(e => console.log(e));
-    */
-
     const URL5 = `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&units=metric&appid=1e4c421010fe9c56a53328876e017b5c`;
 
     fetch(URL5).then(response => {
@@ -48,12 +40,6 @@ class WeatherApp extends React.Component{
         console.log('Network request for json failed with response ' + response.status + ': ' + response.statusText);
       }
     });
-
-    /*
-    fetch(URL).then(res =>   res.json()).then(data => {
-      const daily5forecast = data.list.filter(reading => reading.dt_txt.includes("12:00:00"))
-      this.setState({ weatherData: daily5forecast, mainData: data });
-    });*/
 
   }
 

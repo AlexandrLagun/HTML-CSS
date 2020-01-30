@@ -7,7 +7,7 @@ import '../styles/WeatherDisplay.css';
 const FORECASTS = [
   "Forecast for 1 day",
   "Forecast for 5 days"
-   ];
+];
 
 class WeatherDisplay extends React.Component{
   
@@ -34,7 +34,6 @@ class WeatherDisplay extends React.Component{
 
     return  (
     <div>
-      
       <div>
         {FORECASTS.map((forecast, index) => (
           <button className="changeButton"
@@ -46,8 +45,7 @@ class WeatherDisplay extends React.Component{
         ))}
       </div>
       
-      {forecast}
-        
+      {forecast}    
     </div>
     );
   } 

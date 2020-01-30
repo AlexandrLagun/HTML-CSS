@@ -1,7 +1,5 @@
 import { connect } from "react-redux";
-import {chooseForecastType} from "../actions/actionCreators"
-//import { bindActionCreators } from "redux";
-
+import {chooseForecastType} from "../actions/actionCreators";
 import WeatherDisplay from "../components/WeatherDisplay";
 
 
@@ -12,7 +10,6 @@ const mapStateToProps = state => {
           activeForecast : state.inputReducer.activeForecast,
   };
 };
-
 
 const mapDispatchToProps = {
   changeActiveForecast: chooseForecastType

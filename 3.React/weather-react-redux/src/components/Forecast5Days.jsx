@@ -10,12 +10,9 @@ class Forecast5Days extends React.Component {
     this.formatForecast = this.formatForecast.bind(this);
   }
 
-  
-
   formatForecast() {
     return this.props.data.map((day, index) => <CardWeather day={day} data={this.props.data} key={index} city={this.props.city}/>);
   }
-
 
   render() {
     const weatherData = this.props.data;

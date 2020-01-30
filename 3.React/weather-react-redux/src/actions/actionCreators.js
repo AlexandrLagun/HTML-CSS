@@ -36,14 +36,12 @@ export const changeCityStarted = (city) => {
   };
 }
 
-
 export const chooseForecastType = (index) => {
   return {
     type: actionTypes.CHOOSE_FORECAST_TYPE,
     payload: index
   };
 }
-
 
 export const addCity = (city) => {
   return dispatch => {
@@ -52,7 +50,6 @@ export const addCity = (city) => {
 
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=1e4c421010fe9c56a53328876e017b5c`)
       .then(data => {
-        console.log(data);
         dispatch(changeCitySuccess1Days(data.data));
       })
       .catch(err => {
