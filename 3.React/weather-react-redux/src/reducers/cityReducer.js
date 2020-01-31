@@ -9,7 +9,7 @@ const initialState = {
   
 };
 
-export default function inputReducer(state = initialState, action) {
+export const inputReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CHANGE_CITY:
       return {
