@@ -1,232 +1,154 @@
-import { userConstants } from '../constants/userConstants';
-import { links } from '../config/links';
-import UserService from '../services/UserService';
-import { history } from '../store/store';
-import { toastr } from 'react-redux-toastr'
+import { actionTypes  } from './actionTypes/userActionTypes';
 
-class UserActions {
-    
-    static logIn(userInfo) {
-        const logInRequest = (info) => {
-            return {
-                type: userConstants.SIGN_IN_REQUEST,
-                payload: {
-                    info
-                }
-            }
-        };
-        const logInFailure = (error) => {
-            return {
-                type: userConstants.SIGN_IN_FAILURE,
-                payload: {
-                    error
-                }
-            }
-        };
-        const logInSuccess = () => {
-            return {
-                type: userConstants.SIGN_IN_SUCCESS,
-                payload: {}
-            }
-        };
+export const signUpPending = () => {
+  return {
+    type: actionTypes.SIGN_UP_PENDING,
+  };
+}
 
-        return dispatch => {
-            dispatch(logInRequest(userInfo));
-            UserService.logIn(userInfo)
-                .then(handleError)
-                .then(result =>
-                    result.json()
-                )
-                .then(response => {
-                    localStorage.setItem('token', response.token);
-                    return response;
-                })
-                .then(response => {
-                    dispatch(logInSuccess(response));
-                    return response;
-                })
-                //.then(() => dispatch(this.getProfile()))          
-                .then(() => toastr.success("Sign In", "Yeah!"))
-                .then(() => history.push(links.MAIN_PAGE_PATH))
-                .catch(error => {
-                    dispatch(logInFailure(error));
-                    toastr.error("Couldn't sign in. Is your CAPS LOCK on?");
-                    history.push(links.SIGN_IN_PAGE);
-                });
-        }
-    }
+export const signUpSuccess = (data) => {
+  return {
+    type: actionTypes.SIGN_UP_SUCCESS,
+    payload: data
+  };
+}
 
-    static signUp(userInfo) {
-        const signUpRequest = (info) => {
-            return {
-                type: userConstants.SIGN_UP_REQUEST,
-                payload: {
-                    info
-                }
-            }
-        };
-        const signUpFailure = (error) => {
-            return {
-                type: userConstants.SIGN_UP_FAILURE,
-                payload: {
-                    error
-                }
-            }
-        };
-        const signUpSuccess = (info) => {
-            return {
-                type: userConstants.SIGN_UP_SUCCESS,
-                payload: {
-                    info
-                }
-            }
-        };
+export const signUpError = (error) => {
+  return {
+    type: actionTypes.SIGN_UP_FAILURE,
+    payload: error
+  };
+}
 
-        return dispatch => {
-            dispatch(signUpRequest(userInfo));
-            UserService.signUp(userInfo)
-                .then(handleError)
-                .then(() => {
-                    dispatch(signUpSuccess(userInfo));
-                    toastr.success("Sign Up", "User was successfully created.");
-                    history.push(links.SIGN_IN_PAGE);
-                })
-                .catch(error => {
-                    dispatch(signUpFailure(error));
-                    toastr.error("Sign Up", "An error occured during sign up.")
-                });
-        }
-    }
+export const logInPending = () => {
+  return {
+    type: actionTypes.LOG_IN_PENDING,
+  };
+}
 
-    static signOut() {
-        const signOutRequest = () => {
-            return {
-                type: userConstants.SIGN_OUT_REQUEST
-            }
-        };
+export const logInSuccess = (data) => {
+  return {
+    type: actionTypes.LOG_IN_SUCCESS,
+    payload: data
+  };
+}
 
-        const signOutFailure = (error) => {
-            return {
-                type: userConstants.SIGN_OUT_FAILURE,
-                payload: {
-                    error
-                }
-            }
-        };
+export const logInError = (error) => {
+  return {
+    type: actionTypes.LOG_IN_FAILURE,
+    payload: error
+  };
+}
 
-        const signOutSuccess = () => {
-            return {
-                type: userConstants.SIGN_OUT_SUCCESS
-            }
-        };
+export const signOutPending = () => {
+  return {
+    type: actionTypes.SIGN_OUT_PENDING,
+  };
+}
 
-        return (dispatch) => {
-            dispatch(signOutRequest());
-            try {
-                localStorage.removeItem('token');
-                dispatch(signOutSuccess());
-            } 
-            catch (err) {
-                dispatch(signOutFailure(err));
-            }
-            history.push(links.SIGN_IN_PAGE);
-        }
+export const signOutSuccess = (data) => {
+  return {
+    type: actionTypes.SIGN_OUT_SUCCESS,
+    payload: data
+  };
+}
 
-    }
+export const signOutError = (error) => {
+  return {
+    type: actionTypes.SIGN_OUT_FAILURE,
+    payload: error
+  };
+}
 
-    static getInfo() {
-        const getInfoRequest = () => {
-            return {
-                type: userConstants.GET_INFO,
-                payload: {}
-            }
-        };
+export const getProfilePending = () => {
+  return {
+    type: actionTypes.GET_PROFILE_PENDING,
+  };
+}
 
-        return (dispatch) => {
-            dispatch(getInfoRequest());
-        }
-    }
+export function getProfileSuccess(data) {
+  return {
+    type: actionTypes.GET_PROFILE_SUCCESS,
+    payload: data
+  };
+}
 
-    static reset() {
-        const resetRequest = () => {
-            return {
-                type: userConstants.RESET,
-                payload: {}
-            }
-        }
-
-        return (dispatch) => {
-            dispatch(resetRequest());
-        }
-    }
-
-    static getProfile() {
-        const getRequest = (info) => {
-            return {
-                type: userConstants.GET_PROFILE_REQUEST,
-                payload: {
-                    info
-                }
-            }
-        };
-        const getSuccess = (info) => {
-            return {
-                type: userConstants.GET_PROFILE_SUCCESS,
-                payload: {
-                    info
-                }
-            }
-        };
-        const getFailure = (error) => {
-            return {
-                type: userConstants.GET_PROFILE_FAILURE,
-                payload: {
-                    error
-                }
-            }
-        };
-
-        return (dispatch) => {
-            dispatch(getRequest());
-            UserService.getProfile()
-                .then(handleError)
-                .then(result => result.json())
-                .then(jsonInfo => {
-                    dispatch(getSuccess(jsonInfo));
-                })
-                .catch(error => dispatch(getFailure(error)));
-        }
-    }
-
-    static setCurrentLogin(login) {
-        const setRequest = (login) => {
-            return {
-                type: userConstants.SET_CURRENT_USER_LOGIN,
-                payload: {
-                    login: login
-                }
-            }
-        };
-        return dispatch => {
-            dispatch(setRequest(login));
-        }
-    }
-
-    static setCurrentPassword(password) {
-        const setRequest = (password) => {
-            return {
-                type: userConstants.SET_CURRENT_USER_PASSWORD,
-                payload: {
-                    password: password
-                }
-            }
-        };
-        return dispatch => {
-            dispatch(setRequest(password));
-        }
-    }
+export function getProfileError(error) {
+  return {
+    type: actionTypes.GET_PROFILE_FAILURE,
+    payload: error
+  };
 }
 
 
+/* logIn, sighUp and signOut actions...
 
-export default UserActions;
+export const setFirstName = (firstName) => {  
+  return {
+    type: userActionTypes.SET_FIRST_NAME,
+    payload: {
+      firstName
+    }
+  }  
+}
+
+export const setLastName = (lastName) => {  
+  return {
+    type: userActionTypes.SET_LAST_NAME,
+    payload: {
+      lastName
+    }
+  }  
+}
+
+export const setUsername = (username) => {  
+  return {
+    type: userActionTypes.SET_USERNAME,
+    payload: {
+      username
+    }
+  }  
+}
+
+export const setEmail = (email) => {  
+  return {
+    type: userActionTypes.SET_EMAIL,
+    payload: {
+      email
+    }
+  }  
+}
+
+export const setPassword = (password) => {  
+  return {
+    type: userActionTypes.SET_PASSWORD,
+    payload: {
+      password
+    }
+  }  
+}
+
+export const setPasswordConfirmation = (passwordConfirm) => {  
+  return {
+    type: userActionTypes.SET_PASSWORD_CONFIRMATION,
+    payload: {
+      passwordConfirm
+    }
+  }  
+}
+
+export const getInfo = () => {  
+  return {
+    type: userActionTypes.GET_INFO,
+    payload: {}
+  }  
+}
+
+export const reset = () => {  
+  return {
+    type: userActionTypes.RESET,
+    payload: {}
+  }  
+}
+
+*/

@@ -19,14 +19,14 @@ const Header = ( { isAdmin, loggedIn, onSignOut } ) => (
             { !loggedIn &&
                 <div>
                   <Link to={ links.LOG_IN_PAGE } >
-                    <Button>
+                    <button>
                       Log In
-                    </Button>
+                    </button>
                   </Link>
                   <Link to={ links.SIGN_UP_PAGE } >
-                    <Button>
+                    <button>
                       Sign Up
-                    </Button>
+                    </button>
                   </Link>
                 </div>
             }
@@ -35,14 +35,14 @@ const Header = ( { isAdmin, loggedIn, onSignOut } ) => (
             { loggedIn &&
             <div>
               <Link to={ links.PROFILE_PAGE } >
-                <Button>
+                <button>
                   Profile
-                </Button>
+                </button>
               </Link>
               <Link to={""} onClick={onSignOut}>
-                <Button>
+                <button>
                   Sign Out
-                </Button>
+                </button>
               </Link>
             </div>
             }

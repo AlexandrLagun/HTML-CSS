@@ -12,7 +12,6 @@ export const links = {
   //USER_PAGE: '/account',
   ABOUT_INFO_PAGE: '/about',
 
-  
 
   //закрытые ссылки
 
