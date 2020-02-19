@@ -20,3 +20,4 @@ class MainPage extends PureComponent {
 }
 
 export default MainPage;
+    

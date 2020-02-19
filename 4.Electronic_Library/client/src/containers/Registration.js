@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authActions } from '../actions/userActions';
 import SimpleReactValidator from 'simple-react-validator';
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 import { authMessages } from '../helpers/validateMessages';
 import Spinner from '../components/Spinner';
 
+
 class RegistrationForm extends React.Component {
+
   constructor(props) {
       super(props);
       this.validator = new SimpleReactValidator();
@@ -76,9 +78,9 @@ class RegistrationForm extends React.Component {
 
 
   render() {
-    if (this.props.token) {
+    /* if (this.props.token) {
         return <Redirect to='/' />;
-    }
+    } */
     return (
         <div>
             <Form onSubmit={this.submitForm}>
