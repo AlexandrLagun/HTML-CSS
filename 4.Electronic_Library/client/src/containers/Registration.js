@@ -2,29 +2,28 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { authActions } from '../actions/userActions';
+import { userActions } from '../actions/userActions';
 import SimpleReactValidator from 'simple-react-validator';
-//import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { authMessages } from '../helpers/validateMessages';
-import Spinner from '../components/Spinner';
+//import Spinner from '../components/Spinner';
 
 
 class RegistrationForm extends React.Component {
 
-  constructor(props) {
-      super(props);
-      this.validator = new SimpleReactValidator();
-      this.state = {
-        email: '',
-        username: '',
-        password: '',
-        passwordConfirmation: '',
-        isConfirmedPassword: false,
-        isSubmitting: false,
-        messageForConfirm: ''
-    };
-  }
-
+    constructor(props) {
+        super(props);
+        this.validator = new SimpleReactValidator();
+        this.state = {
+            email: '',
+            username: '',
+            password: '',
+            passwordConfirmation: '',
+            isConfirmedPassword: false,
+            isSubmitting: false,
+            messageForConfirm: ''
+        };
+    }
   
 
   submitForm = async e => {
@@ -69,18 +68,16 @@ class RegistrationForm extends React.Component {
     const newState = {};
     newState[e.target.name] = e.target.value;
 
-    await this.setState(...this.state, newState);
+    await this.setState(newState);
     this.checkPasswordConfirmation();
   };
 
 
 
-
-
   render() {
-    /* if (this.props.token) {
+    if (this.props.token) {
         return <Redirect to='/' />;
-    } */
+    } 
     return (
         <div>
             <Form onSubmit={this.submitForm}>
@@ -174,10 +171,10 @@ class RegistrationForm extends React.Component {
                 <Button variant='primary' type='submit' className='mb-3'>
                     Register
                 </Button>
-               { <Spinner
+               {/* { <Spinner
                     isLoading={this.props.isLoading}
                     className='ml-3'
-                /> }
+                /> } */}
                 <Form.Text className='text-danger' size='lg'>
                     {this.props.validationMessage}
                 </Form.Text>
@@ -199,7 +196,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        registerUser: bindActionCreators(authActions.register, dispatch)
+        registerUser: bindActionCreators(userActions.register, dispatch)
     };
 };
 

@@ -8,7 +8,7 @@ const Header = ( { isAdmin, loggedIn, onSignOut } ) => (
         <div className="nav"> 
             <Link to='/' className="image">
                 <img
-                  src={image}
+                  /* src={image} */
                   width="50"
                   height="50"
                   className="image"
