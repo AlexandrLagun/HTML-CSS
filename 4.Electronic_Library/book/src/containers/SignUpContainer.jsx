@@ -11,7 +11,7 @@ class SingUpContainer extends React.PureComponent {
   
     signUpHandler = (data) => {
         //console.log(data, "from container");
-        this.props.onSingUpUser(data).then(() => this.props.history.push('/')).catch((err) => console.log(err))
+        this.props.onSingUpUser(data).then(() => this.props.history.push('/account/signin')).catch((err) => console.log(err))
       
     }
   

@@ -116,7 +116,7 @@ class SignUp extends React.Component{
                         <Form.Label>Username</Form.Label>
                         <Form.Control
                             type='text'
-                            placeholder='Enter your name'
+                            placeholder='Enter your username'
                             name='username'
                             onChange={this.setInputValue}
                             isValid={this.validator.fieldValid('username')}
@@ -129,7 +129,7 @@ class SignUp extends React.Component{
                             {this.validator.message(
                                 'username',
                                 this.state.username,
-                                'required|min:3|max:30|alpha_num_dash_space'
+                                'required|min:3|max:15|alpha_num_dash_space'
                             )}
                         </Form.Text>
                     </Form.Group>
@@ -177,28 +177,9 @@ class SignUp extends React.Component{
                             )}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group controlId='formConfirmation'>
-                        <Form.Label>Confirm password</Form.Label>
-                        <Form.Control
-                            type='password'
-                            placeholder={'Confirm your password'}
-                            name='passwordConfirmation'
-                            onChange={this.setInputValue}
-                            isValid={this.state.isConfirmedPassword}
-                            isInvalid={
-                                !this.state.isConfirmedPassword &&
-                                this.state.isSubmitted
-                            }
-                        />
-                        <Form.Text className='text-danger'>
-                            {this.state.isConfirmedPassword &&
-                            this.state.isSubmitted
-                                ? ''
-                                : this.state.messageForConfirm}
-                        </Form.Text>
-                    </Form.Group>
+                    
                     <Button variant='primary' type='submit' className='mb-3'>
-                        Register
+                        Login
                     </Button>
                    
                     <Form.Text className='text-danger' size='lg'>

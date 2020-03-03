@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const dburl ="mongodb+srv://AlexLagun:alex0806329@cluster0-no4oc.mongodb.net/test?retryWrites=true&w=majority";
 const { success, error} = require('consola');
 
-export const connectToMongoDB = async () => {
+export const connectToMongoDB =  () => {
   try{
-    await mongoose.connect(dburl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true});
+   mongoose.connect(dburl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true});
     success ({ message: `Successfully connected to Database `, badge: true});
   
   } catch(err) {
