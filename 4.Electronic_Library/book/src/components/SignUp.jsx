@@ -16,7 +16,6 @@ class SignUp extends React.Component{
             password: "",
             passwordConfirmation: "",
             isConfirmedPassword: false,
-            isSubmitted: false,
             messageForConfirm: '' 
         }
         this.submitForm = this.submitForm.bind(this);
@@ -33,8 +32,7 @@ class SignUp extends React.Component{
 
         if (
             this.validator.allValid() &&
-            this.state.isConfirmedPassword &&
-            !this.state.isSubmitting
+            this.state.isConfirmedPassword 
         ) {
             //console.log(this.state);
             await this.props.signUpHandler(this.state);
@@ -202,10 +200,7 @@ class SignUp extends React.Component{
                     <Button variant='primary' type='submit' className='mb-3'>
                         Register
                     </Button>
-                   {/*  <Spinner
-                        isLoading={this.props.isLoading}
-                        className='ml-3'
-                    /> */}
+                   
                     <Form.Text className='text-danger' size='lg'>
                         {this.props.validationMessage}
                     </Form.Text>

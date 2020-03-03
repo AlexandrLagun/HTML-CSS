@@ -5,25 +5,25 @@ export const signUpUser = data => dispatch => {
     formData.append("username", data.username);
     formData.append("email", data.email);
     formData.append("password", data.password);
-    //formData.append("profilePicture", data.profilePicture);
-    console.log(formData);
-   /*  return fetch("/signup", {
+
+    //console.log(formData);
+    return fetch("/account/signup", {
         method: "POST",
         body: formData
       })
       .then(res => {
         if (res.status === 200) {
-          //dispatch(getUser())
+          dispatch(getUser())
         } else if (res.status === 401) {
           throw new Error("User with this email or username is already exists");
         } else {
           throw new Error("Server error");
         }
-      }) */
+      }) 
   }
 
   export const getUser = () => dispatch => {
-    fetch('/profile')
+    fetch('/account')
       .then(res => {
         if (res.status === 200) {
           return res.json();
