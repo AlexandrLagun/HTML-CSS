@@ -12,8 +12,33 @@ class SignIn extends React.Component{
           password: ""
       }
       this.submitForm = this.submitForm.bind(this);
+      this.setInputValue= this.setInputValue.bind(this);
   }
 
+  submitForm = async e => {
+    e.preventDefault();
+
+    this.setState({
+        isSubmitted: true,
+    });
+
+    if (
+        this.validator.allValid() 
+    ) {
+        //console.log(this.state);
+        await this.props.signInHandler(this.state);
+    } else {
+        this.validator.showMessages();
+    }
+};
+
+  setInputValue = async e => {
+    const newState = {};
+    newState[e.target.name] = e.target.value;
+
+    await this.setState(newState);
+    //this.checkConfirmation();
+};
 
   render() {
     return(
@@ -84,28 +109,9 @@ class SignIn extends React.Component{
                         )}
                     </Form.Text>
                 </Form.Group>
-                <Form.Group controlId='formConfirmation'>
-                    <Form.Label>Confirm password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder={'Confirm your password'}
-                        name='passwordConfirmation'
-                        onChange={this.setInputValue}
-                        isValid={this.state.isConfirmedPassword}
-                        isInvalid={
-                            !this.state.isConfirmedPassword &&
-                            this.state.isSubmitted
-                        }
-                    />
-                    <Form.Text className='text-danger'>
-                        {this.state.isConfirmedPassword &&
-                        this.state.isSubmitted
-                            ? ''
-                            : this.state.messageForConfirm}
-                    </Form.Text>
-                </Form.Group>
+              
                 <Button variant='primary' type='submit' className='mb-3'>
-                    Register
+                    Login
                 </Button>
                
                 <Form.Text className='text-danger' size='lg'>

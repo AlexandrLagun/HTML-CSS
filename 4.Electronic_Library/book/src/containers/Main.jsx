@@ -7,6 +7,7 @@ import ModalMessage from '../components/ModalMessage/ModalMessage' */
 import { getUser } from "../actions/userActions";
 //import "./App.css";
 import SignUpContainer from "./SignUpContainer";
+import SignIn from "../components/SignIn";
 
 class Main extends React.PureComponent {
 
@@ -22,6 +23,7 @@ class Main extends React.PureComponent {
     return (<BrowserRouter>
       <div className="main">
         <SignUpContainer/>
+        <SignIn/>
       </div>
     </BrowserRouter>);
   }

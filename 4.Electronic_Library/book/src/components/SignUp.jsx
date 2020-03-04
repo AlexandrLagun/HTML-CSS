@@ -19,6 +19,7 @@ class SignUp extends React.Component{
             messageForConfirm: '' 
         }
         this.submitForm = this.submitForm.bind(this);
+        this.setInputValue= this.setInputValue.bind(this);
     }
 
 
@@ -179,7 +180,7 @@ class SignUp extends React.Component{
                     </Form.Group>
                     
                     <Button variant='primary' type='submit' className='mb-3'>
-                        Login
+                        SignUp
                     </Button>
                    
                     <Form.Text className='text-danger' size='lg'>
