@@ -7,7 +7,7 @@ export const signUpUser = data => dispatch => {
     formData.append("password", data.password);
 
     //console.log(formData);
-    return fetch("/account/signup", {
+    return fetch("/signup", {
         method: "POST",
         body: formData
       })
@@ -23,7 +23,7 @@ export const signUpUser = data => dispatch => {
   }
 
   export const getUser = () => dispatch => {
-    fetch('/account')
+    fetch('/profile')
       .then(res => {
         if (res.status === 200) {
           return res.json();

@@ -2,7 +2,7 @@ const { User } = require("./database");
 var crypto = require('crypto');
 
 
-export const singUp = (req, res) => {
+const signUp = (req, res) => {
 
     let usernameSearch = new Promise((res, rej) => {
       User.findOne({ username: req.body.username })
@@ -35,3 +35,8 @@ export const singUp = (req, res) => {
         res.sendStatus(500);
       });
 }
+
+module.exports = {
+  signUp,
+
+};

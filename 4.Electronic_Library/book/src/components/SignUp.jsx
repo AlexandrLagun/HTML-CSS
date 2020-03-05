@@ -19,7 +19,8 @@ class SignUp extends React.Component{
             messageForConfirm: '' 
         }
         this.submitForm = this.submitForm.bind(this);
-        this.setInputValue= this.setInputValue.bind(this);
+        this.setInputValue = this.setInputValue.bind(this);
+        this.checkConfirmation = this.checkConfirmation.bind(this); 
     }
 
 
@@ -178,6 +179,27 @@ class SignUp extends React.Component{
                             )}
                         </Form.Text>
                     </Form.Group>
+                    <Form.Group controlId='formConfirmation'>
+                        <Form.Label>Password confirmation</Form.Label>
+                        <Form.Control
+                            type='password'
+                            placeholder={'Confirm your password'}
+                            name='passwordConfirmation'
+                            onChange={this.setInputValue}
+                            isValid={this.state.isConfirmedPassword}
+                            isInvalid={
+                                !this.state.isConfirmedPassword &&
+                                this.state.isSubmitted
+                            }
+                        />
+                        <Form.Text className='text-danger'>
+                            {this.state.isConfirmedPassword &&
+                            this.state.isSubmitted
+                                ? ''
+                                : this.state.messageForConfirm}
+                        </Form.Text>
+                    </Form.Group>
+
                     
                     <Button variant='primary' type='submit' className='mb-3'>
                         SignUp

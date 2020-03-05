@@ -10,8 +10,8 @@ class SingUpContainer extends React.PureComponent {
   }
   
     signUpHandler = (data) => {
-        //console.log(data, "from container");
-        this.props.onSingUpUser(data).then(() => this.props.history.push('/account/signin')).catch((err) => console.log(err))
+        console.log(data, "from container");
+        this.props.onSignUpUser(data).then(() => this.props.history.push('/account/signin')).catch((err) => console.log(err))
       
     }
   
@@ -24,7 +24,7 @@ class SingUpContainer extends React.PureComponent {
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      onSingUpUser: (data) => dispatch(signUpUser(data))
+      onSignUpUser: (data) => dispatch(signUpUser(data))
     }
   }
 
