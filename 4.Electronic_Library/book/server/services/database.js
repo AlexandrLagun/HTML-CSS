@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const dburl ="mongodb+srv://AlexLagun:alex0806329@cluster0-no4oc.mongodb.net/test?retryWrites=true&w=majority";
+//const dburl ="mongodb+srv://AlexLagun:alex0806329@cluster0-no4oc.mongodb.net/Elibrary/Users";
 const { success, error} = require('consola');
 
 

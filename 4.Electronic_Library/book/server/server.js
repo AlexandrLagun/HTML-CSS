@@ -14,5 +14,5 @@ app.use(cors());
 app.use(require('./routes/user.js'));
 
 
-app.listen(3002, () => {console.log(`Server was run on the port ${3002}`); });
+app.listen(5000, () => {console.log(`Server was run on the port ${5000}`); });
 

@@ -8,19 +8,19 @@ export const signUpUser = data => dispatch => {
 
     //console.log(formData);
     return fetch("/signup", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => {
-        if (res.status === 200) {
-          dispatch(getUser())
-        } else if (res.status === 401) {
-          throw new Error("User with this email or username is already exists");
-        } else {
-          throw new Error("Server error");
-        }
-      }) 
-  }
+      method: "POST",
+      body: formData
+    })
+    .then(res => {
+      if (res.status === 200) {
+        dispatch(getUser())
+      } else if (res.status === 401) {
+        throw new Error("User with this email or username is already exists");
+      } else {
+        throw new Error("Server error");
+      }
+    }) 
+}
 
   export const getUser = () => dispatch => {
     fetch('/profile')
