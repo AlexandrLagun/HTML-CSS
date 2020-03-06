@@ -15,7 +15,7 @@ app.use(require('./routes/user.js'));
 const startApp = async () => {
 
     try{
-        await app.listen(3002, () => success ({ message: `Server was started on port ${PORT}`, badge: true}));
+        await app.listen(5002, () => success ({ message: `Server was started on port ${PORT}`, badge: true}));
         await mongoose.connect(dburl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true});
         success ({ message: `Successfully connected to Database \n${DB}`, badge: true});
       

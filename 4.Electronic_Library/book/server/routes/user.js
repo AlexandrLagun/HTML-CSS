@@ -6,6 +6,7 @@ router.get("/home", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-  res.send('req.body');
+  res.send(req.body);
+  console.log(req.body);
 })
 module.exports = router;

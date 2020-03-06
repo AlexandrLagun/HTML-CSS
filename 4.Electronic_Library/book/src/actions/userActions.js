@@ -6,20 +6,22 @@ export const signUpUser = data => dispatch => {
     formData.append("email", data.email);
     formData.append("password", data.password);
     //formData.append("profilePicture", data.profilePicture);
-    console.log(formData);
-   /*  return fetch("/signup", {
+    console.log(data.firstname);
+      return fetch("/signup", {
         method: "POST",
-        body: formData
+        body: "webApp"
+        
       })
       .then(res => {
         if (res.status === 200) {
-          //dispatch(getUser())
+          //dispatch(getUser());
+          console.log('all ok');
         } else if (res.status === 401) {
           throw new Error("User with this email or username is already exists");
         } else {
           throw new Error("Server error");
         }
-      }) */
+      })  
   }
 
   export const getUser = () => dispatch => {

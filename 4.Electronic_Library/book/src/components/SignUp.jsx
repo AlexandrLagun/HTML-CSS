@@ -33,8 +33,8 @@ class SignUp extends React.Component{
 
         if (
             this.validator.allValid() &&
-            this.state.isConfirmedPassword &&
-            !this.state.isSubmitting
+            this.state.isConfirmedPassword //&&
+           // !this.state.isSubmitted
         ) {
             //console.log(this.state);
             await this.props.signUpHandler(this.state);
