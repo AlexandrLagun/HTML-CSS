@@ -18,9 +18,6 @@ class SignUp extends React.Component{
             isConfirmedPassword: false,
             messageForConfirm: '' 
         }
-        this.submitForm = this.submitForm.bind(this);
-        this.setInputValue = this.setInputValue.bind(this);
-        this.checkConfirmation = this.checkConfirmation.bind(this); 
     }
 
 
@@ -44,7 +41,7 @@ class SignUp extends React.Component{
     };
 
     checkConfirmation = () => {
-        if (   /*  1st case: "different password" when they are equal, but too short ;
+        if (   /*   1st case: "different password" when they are equal, but too short ;
                     2nd case: when password is "" and submit are clicked - different passwords but they are both empty. 
                     3rd case: passwordConfirmation is well when you start edit form */
             /* this.validator.fieldValid('password') */ /* this.state.password !== "" && */

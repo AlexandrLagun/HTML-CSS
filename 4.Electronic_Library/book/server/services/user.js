@@ -1,5 +1,6 @@
 const { User } = require("./database");
-var crypto = require('crypto');
+const crypto = require('crypto');
+const JWToken = require("./jwt");
 
 
 const signUp = (req, res) => {
@@ -24,8 +25,8 @@ const signUp = (req, res) => {
           });
 
           newUser.save();
+
           res.sendStatus(200);
-    
         } else {
           res.sendStatus(401);
         }
@@ -36,7 +37,36 @@ const signUp = (req, res) => {
       });
 }
 
+
+const signIn = (req, res) => {
+  User.findOne({ username: req.body.username },
+    (err, user) => {
+      if (user) {
+        if (
+          user.password === crypto.createHash("sha256").update(req.body.password).digest("hex")
+        ) {
+          // add cookies to store jwt
+          res.cookie("jwt", JWToken.setToken(user._id), {
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // jwt expires in 1 week
+            httpOnly: true
+          });
+          res.sendStatus(200);
+        } else {
+          
+          res.sendStatus(401);
+        }
+      } else {
+        res.sendStatus(404);
+      }
+    }
+  );
+}
+
+
+
+
 module.exports = {
   signUp,
+  signIn
 
 };

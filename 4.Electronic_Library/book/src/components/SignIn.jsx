@@ -8,19 +8,16 @@ class SignIn extends React.Component{
       this.validator = new SimpleReactValidator();
       this.state = {
           username: "",
-          email: "",
           password: ""
       }
-      this.submitForm = this.submitForm.bind(this);
-      this.setInputValue= this.setInputValue.bind(this);
   }
 
   submitForm = async e => {
     e.preventDefault();
 
-    this.setState({
+   /*  this.setState({
         isSubmitted: true,
-    });
+    }); */
 
     if (
         this.validator.allValid() 
@@ -37,7 +34,6 @@ class SignIn extends React.Component{
     newState[e.target.name] = e.target.value;
 
     await this.setState(newState);
-    //this.checkConfirmation();
 };
 
   render() {
@@ -62,28 +58,6 @@ class SignIn extends React.Component{
                             'username',
                             this.state.username,
                             'required|min:3|max:15|alpha_num_dash_space'
-                        )}
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group controlId='formEmail'>
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                        placeholder='Enter your email address'
-                        value={this.state.email}
-                        onChange={this.setInputValue}
-                        name='email'
-                        isValid={this.validator.fieldValid('email')}
-                        isInvalid={
-                            !this.validator.fieldValid('email') &&
-                            this.state.isSubmitted
-                        }
-                    />
-                    <Form.Text className='text-danger'>
-                        {this.validator.message(
-                            'email',
-                            this.state.email,
-                            'required|email'
                         )}
                     </Form.Text>
                 </Form.Group>

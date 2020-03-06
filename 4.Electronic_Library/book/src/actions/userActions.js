@@ -40,9 +40,31 @@ export const signUpUser = data => dispatch => {
   }
 
 
-  const setUser = user => {
+export const setUser = user => {
     return {
       type: "SET_USER",
       user
     };
   }
+
+export const signInUser = (data) => (dispatch) => {
+  return fetch("/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }).then(res => {
+    if (res.status === 200) {
+      dispatch(getUser());
+    } else if (res.status === 401) {
+
+      throw new Error("Invalid username or password");
+
+    } else if (res.status === 404) {
+      
+      throw new Error("User with such username doesn't exists");
+
+    }
+  })
+} 
