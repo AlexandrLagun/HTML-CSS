@@ -5,24 +5,25 @@ export const signUpUser = data => dispatch => {
     formData.append("username", data.username);
     formData.append("email", data.email);
     formData.append("password", data.password);
-    //formData.append("profilePicture", data.profilePicture);
-    console.log(data.firstname);
-      return fetch("/signup", {
-        method: "POST",
-        body: "webApp"
-        
-      })
-      .then(res => {
-        if (res.status === 200) {
-          //dispatch(getUser());
-          console.log('all ok');
-        } else if (res.status === 401) {
-          throw new Error("User with this email or username is already exists");
-        } else {
-          throw new Error("Server error");
-        }
-      })  
-  }
+
+
+    //console.log(formData);
+    return fetch("/signup", {
+      method: "POST",
+      body: data
+    })
+    .then(res => {
+      if (res.status === 200) {
+        //dispatch(getUser())
+        console.log("fetch error");
+      } else if (res.status === 401) {
+        throw new Error("User with this email or username is already exists");
+      } else if (res.status === 500){
+        throw new Error("Server error");
+      }
+    }) 
+}
+
 
   export const getUser = () => dispatch => {
     fetch('/profile')
@@ -37,14 +38,36 @@ export const signUpUser = data => dispatch => {
         dispatch(setUser(user));
       })
       .catch(err => {
-        console.log(err);
+        console.log("err");
       });
   }
 
 
-  const setUser = user => {
+export const setUser = user => {
     return {
       type: "SET_USER",
       user
     };
   }
+
+export const signInUser = (data) => (dispatch) => {
+  return fetch("/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }).then(res => {
+    if (res.status === 200) {
+      dispatch(getUser());
+    } else if (res.status === 401) {
+
+      throw new Error("Invalid username or password");
+
+    } else if (res.status === 404) {
+      
+      throw new Error("User with such username doesn't exists");
+
+    }
+  })
+} 

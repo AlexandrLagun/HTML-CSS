@@ -16,10 +16,8 @@ class SignUp extends React.Component{
             password: "",
             passwordConfirmation: "",
             isConfirmedPassword: false,
-            isSubmitted: false,
             messageForConfirm: '' 
         }
-        this.submitForm = this.submitForm.bind(this);
     }
 
 
@@ -33,8 +31,8 @@ class SignUp extends React.Component{
 
         if (
             this.validator.allValid() &&
-            this.state.isConfirmedPassword //&&
-           // !this.state.isSubmitted
+
+            this.state.isConfirmedPassword 
         ) {
             //console.log(this.state);
             await this.props.signUpHandler(this.state);
@@ -44,7 +42,7 @@ class SignUp extends React.Component{
     };
 
     checkConfirmation = () => {
-        if (   /*  1st case: "different password" when they are equal, but too short ;
+        if (   /*   1st case: "different password" when they are equal, but too short ;
                     2nd case: when password is "" and submit are clicked - different passwords but they are both empty. 
                     3rd case: passwordConfirmation is well when you start edit form */
             /* this.validator.fieldValid('password') */ /* this.state.password !== "" && */
@@ -70,7 +68,7 @@ class SignUp extends React.Component{
 
     render() {
         return(
-            <div className="signUpForm">
+            <div className="sign-up-form">
                 <Form onSubmit={this.submitForm}>
                     <Form.Group controlId='formFirstname'>
                         <Form.Label>Firstname</Form.Label>
@@ -118,7 +116,7 @@ class SignUp extends React.Component{
                         <Form.Label>Username</Form.Label>
                         <Form.Control
                             type='text'
-                            placeholder='Enter your name'
+                            placeholder='Enter your username'
                             name='username'
                             onChange={this.setInputValue}
                             isValid={this.validator.fieldValid('username')}
@@ -131,7 +129,7 @@ class SignUp extends React.Component{
                             {this.validator.message(
                                 'username',
                                 this.state.username,
-                                'required|min:3|max:30|alpha_num_dash_space'
+                                'required|min:3|max:15|alpha_num_dash_space'
                             )}
                         </Form.Text>
                     </Form.Group>
@@ -175,12 +173,12 @@ class SignUp extends React.Component{
                             {this.validator.message(
                                 'password',
                                 this.state.password,
-                                'required|min:4'
+                                'required|min:1'
                             )}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group controlId='formConfirmation'>
-                        <Form.Label>Confirm password</Form.Label>
+                        <Form.Label>Password confirmation</Form.Label>
                         <Form.Control
                             type='password'
                             placeholder={'Confirm your password'}
@@ -199,13 +197,12 @@ class SignUp extends React.Component{
                                 : this.state.messageForConfirm}
                         </Form.Text>
                     </Form.Group>
+
+                    
                     <Button variant='primary' type='submit' className='mb-3'>
-                        Register
+                        SignUp
                     </Button>
-                   {/*  <Spinner
-                        isLoading={this.props.isLoading}
-                        className='ml-3'
-                    /> */}
+                   
                     <Form.Text className='text-danger' size='lg'>
                         {this.props.validationMessage}
                     </Form.Text>

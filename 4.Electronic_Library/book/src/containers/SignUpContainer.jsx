@@ -1,18 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import SingUp from '../components/SignUp';
 import { signUpUser } from '../actions/userActions';
 
 class SingUpContainer extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.signUpHandler = this.signUpHandler.bind(this);
-  }
   
     signUpHandler = (data) => {
-        //console.log(data, "from container");
-        this.props.onSingUpUser(data);//.then(() => this.props.history.push('/home')).catch((err) => console.log(err))
-      
+
+        
+        this.props.onSignUpUser(data).then(() => this.props.history.push('/')).catch((err) => console.log(err))
+        console.log(data, "from container");
     }
   
     render() {
@@ -24,8 +22,20 @@ class SingUpContainer extends React.PureComponent {
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      onSingUpUser: (data) => dispatch(signUpUser(data))
+      onSignUpUser: (data) => dispatch(signUpUser(data))
     }
   }
+
+
+  /* const mapDispatchToProps = (dispatch) => {
+    const bindedCreators = bindActionCreators({
+      getUserProfile: getUser, 
+    }, dispatch);
+    return {
+        ...bindedCreators
+    }
+}  */
+  
+
 
   export default connect(null, mapDispatchToProps)(SingUpContainer);

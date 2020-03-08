@@ -1,12 +1,33 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/home", (req, res) => {
+const {
+  signUp,
+  signIn
+} = require("../services/user");
+
+
+router.get("/", (req, res) => {
   res.send("Hello world");
 });
 
+router.get("/profile", (req, res) => {
+  res.send("UserInfo");
+});
+
 router.post("/signup", (req, res) => {
-  res.send(req.body);
-  console.log(req.body);
-})
+
+
+    signUp(req, res);
+    
+  
+});
+
+router.post("/signin", (req, res) => {
+  if (req.body.username && req.body.password) {
+    signIn(req, res)
+  }
+});
+
+
 module.exports = router;
