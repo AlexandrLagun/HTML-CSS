@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const bp = require('body-parser');
-const connectToMongoDB = require("./services/database");
+const connectToMongoDB = require("./services/database").connectToMongoDB;
 //const { PORT } = require('./config/index');
 
 const app = express();

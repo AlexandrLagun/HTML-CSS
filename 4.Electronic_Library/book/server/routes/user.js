@@ -16,15 +16,16 @@ router.get("/profile", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-
-    signUp(req, res);
+    const userData = req.body;
+    console.log("signupRouter " + req.body )
+    signUp(userData, res);
     
 });
 
 router.post("/signin", (req, res) => {
   
     signIn(req, res)
-    
+
 });
 
 

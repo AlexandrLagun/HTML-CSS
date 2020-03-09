@@ -1,16 +1,16 @@
 export const signUpUser = data => dispatch => {
-    let formData = new FormData();
+ /*    let formData = new FormData();
     formData.append("firstname", data.firstname);
     formData.append("lastname", data.lastname);
     formData.append("username", data.username);
     formData.append("email", data.email);
-    formData.append("password", data.password);
-
-
-    //console.log(formData);
+    formData.append("password", data.password); */
+    const userInfo = JSON.stringify(data);
+ 
+    console.log("useraction!!!" + userInfo);
     return fetch("/signup", {
       method: "POST",
-      body: data
+      body: userInfo
     })
     .then(res => {
       if (res.status === 200) {

@@ -30,5 +30,4 @@ const connectToMongoDB =  () => {
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
-module.exports = connectToMongoDB;
+module.exports = { User, connectToMongoDB };

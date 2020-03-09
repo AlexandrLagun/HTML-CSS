@@ -1,27 +1,27 @@
-const { User } = require("./database");
+const  User  = require("./database").User;
 const crypto = require('crypto');
 //const JWToken = require("./jwt");
 
 
 const signUp = (req, res) => {
-
+    console.log( "FDDG"+  JSON.stringify(req));
     let usernameSearch = new Promise((res, rej) => {
-      User.findOne({ username: req.body.username })
+      User.findOne({ username: req.username })
         .then(username => res(username))
     });
     let emailSearch = new Promise((res, rej) => {
-      User.findOne({ email: req.body.email })
+      User.findOne({ email: req.email })
         .then(email => res(email))
     });
     Promise.all([usernameSearch, emailSearch])
       .then(values => {
         if (values[0] === null && values[1] === null) {
           let newUser = new User({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            username: req.body.username,
-            email: req.body.email,
-            password: crypto.createHash("sha256").update(req.body.password).digest("hex")
+            firstname: req.firstname,
+            lastname: req.lastname,
+            username: req.username,
+            email: req.email,
+            password: crypto.createHash("sha256").update(req.password).digest("hex")
           });
 
           newUser.save();
