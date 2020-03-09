@@ -16,15 +16,16 @@ router.get("/profile", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-  
-    signUp(req, res)
- 
+
+    signUp(req, res);
+    
 });
 
 router.post("/signin", (req, res) => {
-  if (req.body.login && req.body.password) {
+  
     signIn(req, res)
-  }
+    
 });
+
 
 module.exports = router;

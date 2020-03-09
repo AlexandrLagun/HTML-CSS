@@ -17,15 +17,15 @@ const connectToMongoDB =  () => {
 
  const userSchema = mongoose.Schema({
   
-  firstName: String,
-  lastName: String,
-  username: String,
-  email: String,
-  password: String,
+  firstName: {type: String, required: true},
+  lastName: {type: String, required: true},
+  username: {type: String, required: true},
+  email: {type: String, required: true},
+  password: {type: String, required: true},
   takenBooks: Array,
   bookedBooks: Array,
-  isAdmin: Boolean,
-  isBan: Boolean,
+  isAdmin: {type: Boolean, default: false},
+  isBan: {type: Boolean, default: false} 
 });
 
 const User = mongoose.model("User", userSchema);

@@ -3,27 +3,30 @@ import { connect } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 /* import SideBarContainer from './SideBarContainer'
 import ContentContainer from './ContentContainer'
+
 import ModalMessage from '../components/ModalMessage/ModalMessage' */
 import { getUser } from "../actions/userActions";
+import { bindActionCreators } from 'redux';
+
 //import "./App.css";
 import SignUpContainer from "./SignUpContainer";
-import SignIn from "../components/SignIn";
+import SignInContainer from "./SignInContainer";
 
 class Main extends React.PureComponent {
 
-  componentDidMount() {
+  /* componentDidMount() {
     this.props.getUserProfile()
-  }
+  } */
 
-  closeModalMessage = () => {
+ /*  closeModalMessage = () => {
     this.props.onSetModal()
-  }
+  } */
 
   render() {
     return (<BrowserRouter>
       <div className="main">
         <SignUpContainer/>
-        <SignIn/>
+        <SignInContainer/>
       </div>
     </BrowserRouter>);
   }
@@ -33,10 +36,13 @@ class Main extends React.PureComponent {
  // return { isModalShow: state.modalMessage.isShow, modalTitle: state.modalMessage.modalTitle, modalText: state.modalMessage.modalText }
 } */
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUserProfile: () => dispatch(getUser()),
-  }
-}
+  const mapDispatchToProps = (dispatch) => {
+    const bindedCreators = bindActionCreators({
+      getUserProfile: getUser, 
+    }, dispatch);
+    return {
+        ...bindedCreators
+    }
+} 
 
 export default connect(null, mapDispatchToProps)(Main);

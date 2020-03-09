@@ -1,6 +1,7 @@
-import {actionTypes} from "../actions/actionTypes";
+import { handleActions } from 'redux-actions';
 
-const initialState = {
+
+const defaultState = {
   _id: '',
   firstname: '',
   lastname: '',
@@ -12,7 +13,25 @@ const initialState = {
   isBanned: false
 }
 
-export const userReducer = (state = initialState, action) => {
+
+const userReducer = handleActions( {
+  SET_USER: ( state, action ) => ( {
+    ...state,
+    _id: action.data._id,
+    firstname: action.data.firstname,
+    lastname: action.data.lastname,
+    username: action.data.username,
+    email: action.data.email,
+    takenBooks: action.data.takenBooks,
+    bookedBooks: action.data.bookedBooks,
+    isAdmin: action.data.isAdmin,
+    isBanned: action.data.isBanned
+  } ),
+}, defaultState );
+
+export default userReducer;
+
+/* export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_USER: 
     return {
@@ -30,4 +49,4 @@ export const userReducer = (state = initialState, action) => {
     default: return state;
 
   }
-}
+} */

@@ -38,7 +38,7 @@ class SignIn extends React.Component{
 
   render() {
     return(
-        <div className="signInForm">
+        <div className="sign-in-form">
             <Form onSubmit={this.submitForm}>
                 <Form.Group controlId='formUsername'>
                     <Form.Label>Username</Form.Label>

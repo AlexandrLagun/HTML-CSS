@@ -31,6 +31,7 @@ class SignUp extends React.Component{
 
         if (
             this.validator.allValid() &&
+
             this.state.isConfirmedPassword 
         ) {
             //console.log(this.state);
@@ -67,7 +68,7 @@ class SignUp extends React.Component{
 
     render() {
         return(
-            <div className="signUpForm">
+            <div className="sign-up-form">
                 <Form onSubmit={this.submitForm}>
                     <Form.Group controlId='formFirstname'>
                         <Form.Label>Firstname</Form.Label>
@@ -172,7 +173,7 @@ class SignUp extends React.Component{
                             {this.validator.message(
                                 'password',
                                 this.state.password,
-                                'required|min:4'
+                                'required|min:1'
                             )}
                         </Form.Text>
                     </Form.Group>

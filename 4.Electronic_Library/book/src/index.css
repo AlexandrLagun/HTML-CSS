@@ -1,9 +1,9 @@
-.signUpForm {
+.sign-up-form {
     display: flex;
     justify-content: center;
 }
 
-.signInForm {
+.sign-in-form {
     display: flex;
     justify-content: center;
 }
