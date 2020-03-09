@@ -16,9 +16,9 @@ router.get("/profile", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-  if (req.body.firstname && req.body.lastname && req.body.username && req.body.email && req.body.password) {
+  
     signUp(req, res)
-  };
+ 
 });
 
 router.post("/signin", (req, res) => {
