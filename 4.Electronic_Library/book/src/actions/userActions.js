@@ -7,15 +7,18 @@ export const signUpUser = data => dispatch => {
     formData.append("password", data.password); */
     const userInfo = JSON.stringify(data);
  
-    console.log("useraction!!!" + userInfo);
+    //console.log("useraction!!!" + userInfo);
     return fetch("/signup", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: userInfo
     })
     .then(res => {
       if (res.status === 200) {
         //dispatch(getUser())
-        console.log("fetch error");
+        //console.log("fetch error");
       } else if (res.status === 401) {
         throw new Error("User with this email or username is already exists");
       } else if (res.status === 500){

@@ -7,7 +7,7 @@ const { success, error} = require('consola');
 
 const connectToMongoDB =  () => {
   try{
-   mongoose.connect(dburl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true});
+   mongoose.connect(dburl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true});
     success ({ message: `Successfully connected to Database `, badge: true});
   
   } catch(err) {
@@ -17,7 +17,17 @@ const connectToMongoDB =  () => {
 
  const userSchema = mongoose.Schema({
   
-  firstName: {type: String, required: true},
+  firstName:  String,
+  lastName: String, 
+  username:  String,
+  email:  String, 
+  password: String, 
+  takenBooks: Array,
+  bookedBooks: Array,
+  isAdmin: {type: Boolean, default: false},
+  isBan: {type: Boolean, default: false} 
+
+  /* firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   username: {type: String, required: true},
   email: {type: String, required: true},
@@ -25,7 +35,7 @@ const connectToMongoDB =  () => {
   takenBooks: Array,
   bookedBooks: Array,
   isAdmin: {type: Boolean, default: false},
-  isBan: {type: Boolean, default: false} 
+  isBan: {type: Boolean, default: false}  */
 });
 
 const User = mongoose.model("User", userSchema);

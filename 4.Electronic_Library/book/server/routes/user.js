@@ -16,8 +16,11 @@ router.get("/profile", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-    const userData = req.body;
-    console.log("signupRouter " + req.body )
+    console.log("It's Ok");
+    const {firstname, lastname, username, email, password} = req.body;
+    const userData = {firstname, lastname, username, email, password};
+    //const userData = req.body;
+    console.log("signupInfo: " +  firstname + " " + lastname + " " + username +  " " + email + " " + password);
     signUp(userData, res);
     
 });

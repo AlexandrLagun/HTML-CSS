@@ -3,32 +3,35 @@ const crypto = require('crypto');
 //const JWToken = require("./jwt");
 
 
-const signUp = (req, res) => {
-    console.log( "FDDG"+  JSON.stringify(req));
+const signUp = (userData, res) => {
+    console.log( "FDDG"+  JSON.stringify(userData));
     let usernameSearch = new Promise((res, rej) => {
-      User.findOne({ username: req.username })
+      User.findOne({ username: userData.username })
         .then(username => res(username))
     });
     let emailSearch = new Promise((res, rej) => {
-      User.findOne({ email: req.email })
+      User.findOne({ email: userData.email })
         .then(email => res(email))
     });
     Promise.all([usernameSearch, emailSearch])
       .then(values => {
         if (values[0] === null && values[1] === null) {
           let newUser = new User({
-            firstname: req.firstname,
-            lastname: req.lastname,
-            username: req.username,
-            email: req.email,
-            password: crypto.createHash("sha256").update(req.password).digest("hex")
+            firstName: userData.firstname,
+            lastName: userData.lastname,
+            username: userData.username,
+            email: userData.email,
+            password: crypto.createHash("sha256").update(userData.password).digest("hex")
           });
 
           newUser.save();
 
           res.sendStatus(200);
+
+          // redirect to login page
         } else {
           res.sendStatus(401);
+          console.log("The user with the same email or username already exists");
         }
       })
       .catch(err => {
