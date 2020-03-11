@@ -5,7 +5,6 @@ export const signUpUser = data => dispatch => {
     formData.append("username", data.username);
     formData.append("email", data.email);
     formData.append("password", data.password); */
-    const userInfo = JSON.stringify(data);
  
     //console.log("useraction!!!" + userInfo);
     return fetch("/signup", {
@@ -13,7 +12,7 @@ export const signUpUser = data => dispatch => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: userInfo
+      body: JSON.stringify(data)
     })
     .then(res => {
       if (res.status === 200) {
@@ -26,6 +25,28 @@ export const signUpUser = data => dispatch => {
       }
     }) 
 }
+
+export const signInUser = (data) => dispatch => {
+  return fetch("/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }).then(res => {
+    if (res.status === 200) {
+      //dispatch(getUser());
+    } else if (res.status === 401) {
+
+      throw new Error("Invalid username or password");
+
+    } else if (res.status === 404) {
+      
+      throw new Error("User with such username doesn't exists");
+
+    }
+  })
+} 
 
 
   export const getUser = () => dispatch => {
@@ -53,24 +74,3 @@ export const setUser = user => {
     };
   }
 
-export const signInUser = (data) => (dispatch) => {
-  return fetch("/signin", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  }).then(res => {
-    if (res.status === 200) {
-      dispatch(getUser());
-    } else if (res.status === 401) {
-
-      throw new Error("Invalid username or password");
-
-    } else if (res.status === 404) {
-      
-      throw new Error("User with such username doesn't exists");
-
-    }
-  })
-} 
