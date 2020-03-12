@@ -10,22 +10,22 @@ const defaultState = {
   takenBooks: [],
   bookedBooks: [],
   isAdmin: false,
-  isBanned: false
+  isBan: false
 }
 
 
 const userReducer = handleActions( {
   SET_USER: ( state, action ) => ( {
     ...state,
-    _id: action.data._id,
-    firstname: action.data.firstname,
-    lastname: action.data.lastname,
-    username: action.data.username,
-    email: action.data.email,
-    takenBooks: action.data.takenBooks,
-    bookedBooks: action.data.bookedBooks,
-    isAdmin: action.data.isAdmin,
-    isBanned: action.data.isBanned
+    _id: action.payload._id,
+    firstname: action.payload.firstname,
+    lastname: action.payload.lastname,
+    username: action.payload.username,
+    email: action.payload.email,
+    takenBooks: action.payload.takenBooks,
+    bookedBooks: action.payload.bookedBooks,
+    isAdmin: action.payload.isAdmin,
+    isBan: action.payload.isBan
   } ),
 }, defaultState );
 

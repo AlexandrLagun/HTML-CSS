@@ -1,7 +1,9 @@
-require('dotenv').config();
+const dburl ="mongodb+srv://AlexLagun:alex0806329@cluster0-no4oc.mongodb.net/test?retryWrites=true&w=majority";
+const secretKey = 'mysecretkey';
+
 
 module.exports = {
-    SECRET: process.env.APP_SECRET,
-    DB: process.env.APP_DB,
-    PORT: process.env.APP_PORT
+    dburl,
+    secretKey,
+    
 }

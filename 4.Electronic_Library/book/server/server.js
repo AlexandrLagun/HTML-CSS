@@ -1,14 +1,19 @@
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
+
 const connectToMongoDB = require("./services/database").connectToMongoDB;
-//const { PORT } = require('./config/index');
+
 
 const app = express();
 connectToMongoDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(passport.initialize());
 
 app.use(cors());
 

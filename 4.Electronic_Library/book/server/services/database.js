@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dburl ="mongodb+srv://AlexLagun:alex0806329@cluster0-no4oc.mongodb.net/test?retryWrites=true&w=majority";
+const  DBurl  = require("../config/index").dburl;
 
 const { success, error} = require('consola');
 
@@ -7,7 +7,7 @@ const { success, error} = require('consola');
 
 const connectToMongoDB =  () => {
   try{
-   mongoose.connect(dburl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true});
+   mongoose.connect(DBurl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true});
     success ({ message: `Successfully connected to Database `, badge: true});
   
   } catch(err) {

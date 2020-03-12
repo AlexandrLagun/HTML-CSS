@@ -7,7 +7,7 @@ class SignIn extends React.Component{
       super(props);
       this.validator = new SimpleReactValidator();
       this.state = {
-          username: "",
+          email: "",
           password: ""
       }
   }
@@ -40,24 +40,24 @@ class SignIn extends React.Component{
     return(
         <div className="sign-in-form">
             <Form onSubmit={this.submitForm}>
-                <Form.Group controlId='formUsername'>
-                    <Form.Label>Username</Form.Label>
+                <Form.Group controlId='formEmail'>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control
-                        type='text'
-                        placeholder='Enter your username'
-                        name='username'
+                        placeholder='Enter your email address'
+                        value={this.state.email}
                         onChange={this.setInputValue}
-                        isValid={this.validator.fieldValid('username')}
+                        name='email'
+                        isValid={this.validator.fieldValid('email')}
                         isInvalid={
-                            !this.validator.fieldValid('username') &&
+                            !this.validator.fieldValid('email') &&
                             this.state.isSubmitted
                         }
                     />
                     <Form.Text className='text-danger'>
                         {this.validator.message(
-                            'username',
-                            this.state.username,
-                            'required|min:3|max:15|alpha_num_dash_space'
+                            'email',
+                            this.state.email,
+                            'required|email'
                         )}
                     </Form.Text>
                 </Form.Group>

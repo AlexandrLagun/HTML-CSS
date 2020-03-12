@@ -1,12 +1,5 @@
 export const signUpUser = data => dispatch => {
- /*    let formData = new FormData();
-    formData.append("firstname", data.firstname);
-    formData.append("lastname", data.lastname);
-    formData.append("username", data.username);
-    formData.append("email", data.email);
-    formData.append("password", data.password); */
  
-    //console.log("useraction!!!" + userInfo);
     return fetch("/signup", {
       method: "POST",
       headers: {
@@ -35,7 +28,8 @@ export const signInUser = (data) => dispatch => {
     body: JSON.stringify(data)
   }).then(res => {
     if (res.status === 200) {
-      //dispatch(getUser());
+      dispatch(getUser());
+      
     } else if (res.status === 401) {
 
       throw new Error("Invalid username or password");
@@ -70,7 +64,7 @@ export const signInUser = (data) => dispatch => {
 export const setUser = user => {
     return {
       type: "SET_USER",
-      user
+      payload: user
     };
   }
 
