@@ -75,7 +75,8 @@ router.post("/signin", /* [
 router.get("/profile", passport.authenticate("jwt", {
   session: false
 }), (req, res) => {
-  getProfile(req, res)
+  getProfile(req, res);
+  console.log("AUTHENTICATION WITH PASSPORT!!!");
 });
 
 

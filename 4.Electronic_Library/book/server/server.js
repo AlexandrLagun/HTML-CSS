@@ -3,8 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const JWTregisterStrategy = require('./services/passport').passportJWT;
+const JWTStrategyBan = require('./services/passport').passportJWTBan;
+const JWTStrategyAdmin = require('./services/passport').passportJWTAdmin;
 
 const connectToMongoDB = require("./services/database").connectToMongoDB;
+
+passport.use('jwt', JWTregisterStrategy);
+passport.use('jwtBan', JWTStrategyBan);
+passport.use('jwtAdmin', JWTStrategyAdmin);
 
 
 const app = express();
