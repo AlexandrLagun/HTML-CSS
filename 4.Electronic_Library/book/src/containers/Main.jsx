@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 //import "./App.css";
 import SignUpContainer from "./SignUpContainer";
 import SignInContainer from "./SignInContainer";
+import AddNewBookContainer from "../containers/AddNewBookContainer";
 
 class Main extends React.PureComponent {
 
@@ -25,8 +26,9 @@ class Main extends React.PureComponent {
   render() {
     return (<BrowserRouter>
       <div className="main">
-        <SignUpContainer/>
-        <SignInContainer/>
+        {/* <SignUpContainer/> */}
+        {/* <SignInContainer/> */}
+        <AddNewBookContainer/>
       </div>
     </BrowserRouter>);
   }

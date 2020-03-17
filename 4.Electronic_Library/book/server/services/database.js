@@ -40,4 +40,20 @@ const connectToMongoDB =  () => {
 
 const User = mongoose.model("User", userSchema);
 
+
+const bookSchema = mongoose.Schema({
+  title: String,
+  year: String,
+  bookAthour: String,
+  bookDiscription: String,
+  bookBookedBy: Array,
+  bookOnHandAt: Array,
+  bookPicture: Buffer,
+  comments: Array,
+  count: Number,
+  availableCount: Number
+});
+
+
+
 module.exports = { User, connectToMongoDB };
