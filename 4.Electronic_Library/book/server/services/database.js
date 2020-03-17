@@ -43,17 +43,18 @@ const User = mongoose.model("User", userSchema);
 
 const bookSchema = mongoose.Schema({
   title: String,
+  bookAuthor: String,
   year: String,
-  bookAthour: String,
-  bookDiscription: String,
-  bookBookedBy: Array,
-  bookOnHandAt: Array,
-  bookPicture: Buffer,
+  bookDescription: String,
+  genre: String,
+  bookedBy: Array,
+  takenBy: Array,
+  bookCover: Buffer,
   comments: Array,
   count: Number,
   availableCount: Number
 });
 
+const Book = mongoose.model("Book", bookSchema);
 
-
-module.exports = { User, connectToMongoDB };
+module.exports = { User, Book, connectToMongoDB };

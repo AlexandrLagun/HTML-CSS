@@ -6,11 +6,14 @@ export const addBook = data => dispatch => {
     formData.append("bookDiscription", data.bookDiscription);
     formData.append("coverImage", data.coverImage); */
 
-    console.log(data.bookCover);
+
+    console.log(data);
+    console.log("book cover: " + JSON.stringify(data.bookCover.name));
     return fetch("/addbook", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
+          /* "enctype": "multipart/form-data"  "application/json" */
         },
         body: JSON.stringify(data)
       })

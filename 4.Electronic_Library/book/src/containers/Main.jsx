@@ -27,7 +27,7 @@ class Main extends React.PureComponent {
     return (<BrowserRouter>
       <div className="main">
         {/* <SignUpContainer/> */}
-        {/* <SignInContainer/> */}
+        <SignInContainer/>
         <AddNewBookContainer/>
       </div>
     </BrowserRouter>);

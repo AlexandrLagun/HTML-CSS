@@ -62,7 +62,7 @@ class AddNewBook extends  React.Component{
 
       render() {
         return (<div className="add-new-book">
-            <Form onSubmit={this.submitForm}>
+            <Form onSubmit={this.submitForm} enctype = "multipart/form-data">
 
                 <Form.Group controlId='formBookTitle'>
                     <Form.Label>Book title</Form.Label>
@@ -89,7 +89,7 @@ class AddNewBook extends  React.Component{
                     <Form.Label>Book author</Form.Label>
                     <Form.Control
                         type='text'
-                        placeholder='Enter book title'
+                        placeholder='Enter book author'
                         name='bookAuthor'
                         onChange={this.setInputValue}
                         isValid={this.validator.fieldValid('bookAuthor')}
@@ -178,7 +178,7 @@ class AddNewBook extends  React.Component{
                     <Form.Control
                         type='file'
                         placeholder='upload book cover'
-                        name='cover'
+                        name='bookCover'
                         accept=".jpg, .jpeg, .png"
                         onChange={this.setBookCover}
                     />

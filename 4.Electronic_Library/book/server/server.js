@@ -25,6 +25,7 @@ app.use(passport.initialize());
 app.use(cors());
 
 app.use(require('./routes/user.js'));
+app.use(require('./routes/admin.js'));
 
 
 app.listen(5000, () => {console.log(`Server was run on the port ${5000}`); });
