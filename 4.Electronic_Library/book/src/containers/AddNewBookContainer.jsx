@@ -9,7 +9,7 @@ class AddNewBookContainer extends React.PureComponent {
     addBookHandler = (data) => {
       
       if (data.title && data.bookAuthor && data.year  && data.bookDescription && data.genre && data.bookCover) {
-        
+        console.log(data.bookCover);
         this.props.onAddNewBook(data)
       } 
     }

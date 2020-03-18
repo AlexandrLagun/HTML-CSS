@@ -1,21 +1,22 @@
 export const addBook = data => dispatch => {
-    /* let formData = new FormData();
+    let formData = new FormData();
     formData.append("title", data.title);
+    formData.append("bookAuthor", data.bookAuthor);
     formData.append("year", data.year);
-    formData.append("bookAthour", data.bookAthour);
-    formData.append("bookDiscription", data.bookDiscription);
-    formData.append("coverImage", data.coverImage); */
+    formData.append("bookDescription", data.bookDescription);
+    formData.append("genre", data.genre);
+    formData.append("bookCover", data.bookCover);
 
 
-    console.log(data);
-    console.log("book cover: " + JSON.stringify(data.bookCover.name));
+  //  console.log(data);
+  //  console.log("book cover: " + JSON.stringify(data.bookCover.name));
     return fetch("/addbook", {
         method: "POST",
-        headers: {
+        /* headers: {
           "Content-Type": "application/json"
-          /* "enctype": "multipart/form-data"  "application/json" */
-        },
-        body: JSON.stringify(data)
+          "enctype": "multipart/form-data"  "application/json"
+        }, */
+        body: formData//JSON.stringify(data)
       })
       .then(res => {
         if (res.status === 200) {

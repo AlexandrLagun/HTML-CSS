@@ -23,7 +23,7 @@ class AddNewBook extends  React.Component{
         if (
             this.validator.allValid()  
         ) {
-            console.log(this.state);
+            console.log("State form component: " + this.state);
             await this.props.addBookHandler(this.state);
         } else {
             this.validator.showMessages();
@@ -62,7 +62,7 @@ class AddNewBook extends  React.Component{
 
       render() {
         return (<div className="add-new-book">
-            <Form onSubmit={this.submitForm} enctype = "multipart/form-data">
+            <Form onSubmit={this.submitForm} /* enctype = "multipart/form-data" */>
 
                 <Form.Group controlId='formBookTitle'>
                     <Form.Label>Book title</Form.Label>

@@ -10,7 +10,7 @@ const addBook = (req, res) => {
       year: req.body.year,
       bookDescription: req.body.bookDescription,
       genre: req.body.genre, 
-      bookCover: req.file
+      bookCover: req.file.buffer
     })
     newBook.save()
       .then(() => res.sendStatus(200))
