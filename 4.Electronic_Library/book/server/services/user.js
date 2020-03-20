@@ -87,6 +87,8 @@ const getProfile = (req, res) => {
   res.json(payload);
 }
 
+
+
 module.exports = {
   signUp,
   signIn,

@@ -7,8 +7,14 @@ const passport = require("passport");
 const {
   signUp,
   signIn,
-  getProfile
+  getProfile,
+  
 } = require("../services/user");
+
+const {
+  getBooks,
+  
+} = require("../services/books");
 
 
 router.get("/", (req, res) => {
@@ -79,5 +85,9 @@ router.get("/profile", passport.authenticate("jwt", {
   console.log("AUTHENTICATION WITH PASSPORT!!!");
 });
 
+
+router.get("/books", (req, res) => {
+  getBooks(req, res);
+});
 
 module.exports = router;

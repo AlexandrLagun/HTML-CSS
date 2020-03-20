@@ -11,13 +11,14 @@ import { bindActionCreators } from 'redux';
 //import "./App.css";
 import SignUpContainer from "./SignUpContainer";
 import SignInContainer from "./SignInContainer";
+import BooksContainer from "./BooksContainer";
 import AddNewBookContainer from "../containers/AddNewBookContainer";
 
 class Main extends React.PureComponent {
 
-  /* componentDidMount() {
+  componentDidMount() {
     this.props.getUserProfile()
-  } */
+  }
 
  /*  closeModalMessage = () => {
     this.props.onSetModal()
@@ -26,9 +27,10 @@ class Main extends React.PureComponent {
   render() {
     return (<BrowserRouter>
       <div className="main">
-        <SignUpContainer/>
-        <SignInContainer/>
-        <AddNewBookContainer/>
+        {/* <SignUpContainer/> */}
+       {/*  <SignInContainer/> */}
+       {/*  <AddNewBookContainer/> */}
+        <BooksContainer/>
       </div>
     </BrowserRouter>);
   }
