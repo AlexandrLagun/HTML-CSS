@@ -54,7 +54,7 @@ export const signInUser = (data) => dispatch => {
       })
       .then(user => {
         dispatch(setUser(user));
-        console.log("User: " + JSON.stringify(user));
+       // console.log("User: " + JSON.stringify(user));
       })
       .catch(err => {
         console.log("err");

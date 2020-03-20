@@ -8,19 +8,19 @@ export const getBooks = filter => (dispatch) => {
           throw new Error("Books loading was faild");
         }
       })
-      .then((books) => dispatch(setBooks(books)))
-      .catch((err) => /* dispatch(setModal({
-        isShow: true,
-        modalTitle: "Something happend",
-        modalText: err
-      })) */
+      .then((books) => {  
+        console.log("Hi there from: " + JSON.stringify(books));
+       dispatch(setBooks(books));
+      //console.log("Hi there from");
+      })
+      .catch((err) => 
       console.log("Error was happened!!!")
       )
 }
 
-export const setBooks = (books) => {
+export const setBooks = books => {
     return {
       type: "SET_BOOKS",
-      books
+       books
     };
   }

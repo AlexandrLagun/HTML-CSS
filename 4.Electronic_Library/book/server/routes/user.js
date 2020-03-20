@@ -13,6 +13,7 @@ const {
 
 const {
   getBooks,
+  getBookCover
   
 } = require("../services/books");
 
@@ -89,5 +90,10 @@ router.get("/profile", passport.authenticate("jwt", {
 router.get("/books", (req, res) => {
   getBooks(req, res);
 });
+
+router.get("/book/cover/:bookId", (req, res) => {
+  res.send("Hi there " + req.param.bookId);
+  //getBookCover(req, res)
+})
 
 module.exports = router;

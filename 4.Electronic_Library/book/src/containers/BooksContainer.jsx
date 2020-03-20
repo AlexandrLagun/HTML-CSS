@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { connect } from 'react-redux';
 
-import { getBooks } from "../actions/books";
+import { getBooks } from "../actions/booksActions";
 import Spinner from "../components/Spinner";
 const Books = React.lazy(() => import('../components/Books'));
 
@@ -19,13 +19,14 @@ class BooksContainer extends React.PureComponent {
   
     render() {
       return (<Suspense fallback={<Spinner/>}>
-        {/* <Books books={this.props.books} bookClickHandler={this.bookClickHandler}/> */} hello from bookContainer!
+      <Books books={this.props.books} bookClickHandler={this.bookClickHandler}/> 
       </Suspense >);
     }
   }
   
   const mapStateToProps = state => {
-    return { books: state.books }
+    
+    return { books: state.bookReducer }
   }
   
   const mapDispatchToProps = dispatch => {
