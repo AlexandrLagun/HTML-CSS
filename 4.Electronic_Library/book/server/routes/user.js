@@ -13,7 +13,8 @@ const {
 
 const {
   getBooks,
-  getBookCover
+  getBookCover,
+  searchBooks
   
 } = require("../services/books");
 
@@ -83,7 +84,7 @@ router.get("/profile", passport.authenticate("jwt", {
   session: false
 }), (req, res) => {
   getProfile(req, res);
-  console.log("AUTHENTICATION WITH PASSPORT!!!");
+  //console.log("AUTHENTICATION WITH PASSPORT!!!");
 });
 
 
@@ -92,8 +93,12 @@ router.get("/books", (req, res) => {
 });
 
 router.get("/book/cover/:bookId", (req, res) => {
-  res.send("Hi there " + req.param.bookId);
-  //getBookCover(req, res)
+  getBookCover(req, res)
 })
+
+router.post("/search", (req, res) => {
+  searchBooks(req, res);
+})
+
 
 module.exports = router;

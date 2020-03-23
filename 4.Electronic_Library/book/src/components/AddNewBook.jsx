@@ -80,7 +80,7 @@ class AddNewBook extends  React.Component{
                         {this.validator.message(
                             'title',
                             this.state.title,
-                            'required|min:2|max:20|alpha_space'
+                            'required|min:2|max:50|alpha_space'
                         )}
                     </Form.Text>
                 </Form.Group>
@@ -145,7 +145,7 @@ class AddNewBook extends  React.Component{
                         {this.validator.message(
                             'bookDescription',
                             this.state.bookDescription,
-                            'required|min:2|max:50|alpha_num_dash_space'
+                            'required|min:2|max:200|alpha_num_dash_space'
                         )}
                     </Form.Text>
                 </Form.Group>
@@ -178,6 +178,7 @@ class AddNewBook extends  React.Component{
                     <Form.Control
                         type='file'
                         placeholder='upload book cover'
+                        label="Choose file"
                         name='bookCover'
                         accept=".jpg, .jpeg, .png"
                         onChange={this.setBookCover}
@@ -192,6 +193,7 @@ class AddNewBook extends  React.Component{
 
 
             </Form>
+            
         </div>)    
     }
 

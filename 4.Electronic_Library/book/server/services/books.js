@@ -28,8 +28,23 @@ const getBooks = (req, res) => {
       .catch((err) => console.err(err.message))
   }
 
+  const searchBooks = (req, res) => {
+    let regExp = new RegExp(req.body.searchValue, 'ig');
+    Book.find({ $or: [{ title: regExp }, { bookAuthor: regExp }, { year: regExp }, { genre: regExp }] })
+      .then(books => {
+        books = books.map(book => {
+          return {
+            _id: book._id,
+            title: book.title
+          }
+        })
+        res.json(books)
+      })
+  }
+
   module.exports = {
     getBooks,
     getBookCover,
+    searchBooks,
   
   }

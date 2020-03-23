@@ -19,8 +19,29 @@ export const getBooks = filter => (dispatch) => {
 }
 
 export const setBooks = books => {
-    return {
-      type: "SET_BOOKS",
-       books
-    };
-  }
+  return {
+    type: "SET_BOOKS",
+      books
+  };
+}
+
+export const searchRequest = searchValue => dispatch => {
+  return fetch('/search', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        searchValue: searchValue
+      })
+    })
+    .then(res => res.json())
+    .then(books => dispatch(setSearchedBooks(books)));
+}
+
+const setSearchedBooks = books => {
+  return {
+    type: "SET_SEARCHED_BOOKS",
+      books
+  };
+}

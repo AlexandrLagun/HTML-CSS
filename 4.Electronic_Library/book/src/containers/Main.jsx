@@ -13,6 +13,9 @@ import SignUpContainer from "./SignUpContainer";
 import SignInContainer from "./SignInContainer";
 import BooksContainer from "./BooksContainer";
 import AddNewBookContainer from "../containers/AddNewBookContainer";
+import SearchBooksContainer from "../containers/SearchBooksContainer";
+import SearchBooks from "../components/SearchBooks";
+
 
 class Main extends React.PureComponent {
 
@@ -29,8 +32,9 @@ class Main extends React.PureComponent {
       <div className="main">
         {/* <SignUpContainer/> */}
        {/*  <SignInContainer/> */}
-       {/*  <AddNewBookContainer/> */}
+        <AddNewBookContainer/>
         <BooksContainer/>
+        <SearchBooksContainer/>
       </div>
     </BrowserRouter>);
   }
