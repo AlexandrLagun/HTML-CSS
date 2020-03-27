@@ -1,3 +1,6 @@
+import { getUser } from "./userActions";
+
+
 export const getBooks = filter => (dispatch) => {
   
     return fetch("/books")
@@ -44,4 +47,63 @@ const setSearchedBooks = books => {
     type: "SET_SEARCHED_BOOKS",
       books
   };
+}
+
+export const getSingleBook = (bookId) => (dispatch) => {
+  //console.log(bookId);
+  fetch(`/book/${bookId}`)
+    .then(res => res.json())
+    .then(book => {
+      dispatch(setSingleBook(book))
+    })
+}
+
+export const setSingleBook = book => {
+  console.log(book);
+  return {
+    type: "SET_SINGLE_BOOK",
+    payload: book
+  }
+}
+
+export const addComment = (commentText, bookId) => dispatch => {
+  fetch("/addcomment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      bookId,
+      commentText
+    })
+  })
+}
+
+export const bookingBook = (bookId, bookingTime) => dispatch => {
+  return fetch("/bookingbook", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        bookId,
+        bookingTime
+      })
+    })
+    .then(res => {
+      if (res.status === 200) {
+        dispatch(getUser());
+        /* dispatch(setModal({
+          isShow: true,
+          modalTitle: "Booking book",
+          modalText: `Book has booked for ${bookingTime/1000/60/60} hours`
+        })) */ console.log(`Book has booked for ${bookingTime/1000/60/60} hours`);
+      } else {
+        /* dispatch(setModal({
+          isShow: true,
+          modalTitle: "Booking book faild",
+          modalText: "There are no available books or you alredy have one of it"
+        })) */  console.log("There are no available books or you alredy have one of it");
+      }
+    })
 }

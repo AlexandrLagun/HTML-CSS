@@ -19,7 +19,7 @@ class SearchBooksContainer extends React.PureComponent {
   }
   
   const mapStateToProps = state => {
-    return { searchResult: state.searchBooks }
+    return { searchResult: state.searchBooksReducer }
   }
   
   const mapDispatchToProps = dispatch => {

@@ -14,7 +14,11 @@ const {
 const {
   getBooks,
   getBookCover,
-  searchBooks
+  searchBooks,
+  getSingleBook,
+  addComment,
+  bookingBook,
+  decrementAvailableBooksCount,
   
 } = require("../services/books");
 
@@ -99,6 +103,41 @@ router.get("/book/cover/:bookId", (req, res) => {
 router.post("/search", (req, res) => {
   searchBooks(req, res);
 })
+
+
+router.get("/book/:bookId", (req, res) => {
+  console.log("hi from user routes");
+  getSingleBook(req, res)
+})
+
+router.post("/addcomment", passport.authenticate("jwtBan", {
+  session: false
+}), (req, res) => {
+  addComment(req, res)
+})
+
+router.post("/bookingbook", passport.authenticate("jwtBan", {
+  session: false
+}), (req, res) => {
+  bookingBook(req.body.bookId, req.user._id, req.body.bookingTime)
+    .then(() => decrementAvailableBooksCount(req.body.bookId))
+    .then(() => {
+      /* logger.info(`user ${req.user._id} booked book ${req.body.bookId}`) */
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(400);
+    })
+})
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;

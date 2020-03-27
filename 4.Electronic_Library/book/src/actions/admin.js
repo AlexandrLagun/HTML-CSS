@@ -37,3 +37,16 @@ export const addBook = data => dispatch => {
         }
       })
   }
+
+  export const deleteComment = (bookId, commentId) => dispatch => {
+    return fetch('deletecomment', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        bookId,
+        commentId
+      })
+    })
+  }

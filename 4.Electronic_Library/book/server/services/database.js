@@ -51,8 +51,8 @@ const bookSchema = mongoose.Schema({
   takenBy: Array,
   bookCover: Buffer,
   comments: Array,
-  count: Number,
-  availableCount: Number
+  count: {type: Number, default: 10}, 
+  availableCount: {type: Number, default: 10} 
 });
 
 const Book = mongoose.model("Book", bookSchema);

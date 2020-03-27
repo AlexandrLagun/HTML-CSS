@@ -1,20 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-/* import SideBarContainer from './SideBarContainer'
-import ContentContainer from './ContentContainer'
+//import { createBrowserHistory } from 'history';
 
-import ModalMessage from '../components/ModalMessage/ModalMessage' */
 import { getUser } from "../actions/userActions";
 import { bindActionCreators } from 'redux';
-
 //import "./App.css";
 import SignUpContainer from "./SignUpContainer";
 import SignInContainer from "./SignInContainer";
 import BooksContainer from "./BooksContainer";
 import AddNewBookContainer from "../containers/AddNewBookContainer";
-import SearchBooksContainer from "../containers/SearchBooksContainer";
+import SearchBooksContainer from "./SearchBooksContainer";
+import BookPageContainer from "./BookPageContainer";
 import SearchBooks from "../components/SearchBooks";
+//export const history = createBrowserHistory();
 
 
 class Main extends React.PureComponent {
@@ -28,12 +27,13 @@ class Main extends React.PureComponent {
   } */
 
   render() {
-    return (<BrowserRouter>
+    return (<BrowserRouter >
       <div className="main">
         {/* <SignUpContainer/> */}
-       {/*  <SignInContainer/> */}
+        <SignInContainer/>
         <AddNewBookContainer/>
         <BooksContainer/>
+        <BookPageContainer/>
         <SearchBooksContainer/>
       </div>
     </BrowserRouter>);

@@ -9,11 +9,12 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from "./reducers/rootReducer";
 import thunkMiddleware from 'redux-thunk';
 
+//import history from "./containers/Main";
+
 const enhancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f,
     applyMiddleware(thunkMiddleware)
   );
-
 const store = createStore(rootReducer, enhancers);
 
 
