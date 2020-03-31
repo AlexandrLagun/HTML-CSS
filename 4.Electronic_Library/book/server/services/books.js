@@ -51,7 +51,6 @@ const getBooks = (req, res) => {
   }
 
   const getSingleBook = (req, res) => {
-    
     Book.findById(req.params.bookId)
       .then(book => {
         let bookData = {
@@ -63,7 +62,7 @@ const getBooks = (req, res) => {
             bookDescription: book.bookDescription
           }
         }
-        console.log(bookData);
+        //console.log(bookData);
         return bookData;
       })
       .then(book => res.json(book))
@@ -93,7 +92,7 @@ const getBooks = (req, res) => {
         io.sockets.emit(`dataUpdate${req.body.bookId}`);
         res.sendStatus(200)
       })
-      .catch((err) => console.err(err.message))
+      .catch((err) => console.log(err.message))
   }
 
   const bookingBook = (bookId, userId, bookingTime) => {
@@ -170,6 +169,51 @@ const getBooks = (req, res) => {
       })
   }
 
+  const incrementAvailableBooksCount = bookId => {
+    return Book.findById(bookId)
+      .then((book) => {
+        book.availableCount++;
+        book.save()
+      })
+  }
+
+  const cancelReservation = (bookId, userId) => {
+    return Promise.all([removeUserFromBookingBook(bookId, userId), removeBookingBookFromUser(bookId, userId)])
+      .then(data => data[0])
+  }
+
+  const removeUserFromBookingBook = (bookId, userId) => {
+    return new Promise((res, rej) => {
+      userId = userId.toString()
+      Book.findById(bookId)
+        .then((book) => {
+          book.bookedBy.forEach((user, i, arr) => {
+            let bookedUserId = user.userId.toString()
+            if (bookedUserId === userId) arr.splice(i, 1);
+          })
+          book.save();
+          res(book);
+        })
+        .catch((err) => rej(err))
+    })
+  }
+
+  const removeBookingBookFromUser = (bookId, userId) => {
+    return new Promise((res, rej) => {
+      bookId = bookId.toString()
+      User.findById(userId)
+        .then((user) => {
+          user.bookedBooks.forEach((book, i, arr) => {
+            let userBookId = book.bookId.toString()
+            if (bookId === userBookId) arr.splice(i, 1);
+          })
+          user.save();
+          res();
+        })
+        .catch((err) => rej(err))
+    })
+  }
+
 
   module.exports = {
     getBooks,
@@ -180,6 +224,8 @@ const getBooks = (req, res) => {
     addComment,
     bookingBook,
     decrementAvailableBooksCount,
+    incrementAvailableBooksCount,
+    cancelReservation
 
   
   }

@@ -31,6 +31,8 @@ io.on('connection', function(socket) {
           return {
             comments: book.comments,
             count: book.count,
+            bookedBy: book.bookedBy,
+            takenBy: book.takenBy,
             availableCount: book.availableCount
           }
         })

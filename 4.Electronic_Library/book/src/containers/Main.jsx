@@ -13,6 +13,7 @@ import AddNewBookContainer from "../containers/AddNewBookContainer";
 import SearchBooksContainer from "./SearchBooksContainer";
 import BookPageContainer from "./BookPageContainer";
 import SearchBooks from "../components/SearchBooks";
+import BookControlContainer from "./BookControlContainer";
 //export const history = createBrowserHistory();
 
 
@@ -35,6 +36,7 @@ class Main extends React.PureComponent {
         <BooksContainer/>
         <BookPageContainer/>
         <SearchBooksContainer/>
+        <BookControlContainer/>
       </div>
     </BrowserRouter>);
   }

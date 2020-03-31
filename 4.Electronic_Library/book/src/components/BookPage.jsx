@@ -20,6 +20,8 @@ class BookPage extends React.PureComponent {
           comments,
           count,
           availableCount,
+          bookedByCount,
+          takenByCount,
           hasUserThisBook,
           userId,
           isAdmin,
@@ -47,7 +49,7 @@ class BookPage extends React.PureComponent {
                       <p> {year} </p>
                       <p> {genre} </p>
                       <p> {bookDescription} </p>
-                      <p>Available count: {availableCount} </p>
+                      <p>Available count: {availableCount},  booked count: {bookedByCount}, taken on hands count:  {takenByCount} </p>
                       <button  onClick={this.props.goBack}>Go back</button>
                       <select  onChange={this.bookingTimeHandler}>
                         <option>2 days</option>

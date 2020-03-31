@@ -50,3 +50,78 @@ export const addBook = data => dispatch => {
       })
     })
   }
+
+
+  export const getBookData = bookId => dispatch => {
+    return fetch(`getbookdata/${bookId}`)
+      .then(res => res.json())
+      .then(data => dispatch(setUpdatedBook(data)))
+  }
+
+  const setUpdatedBook = data => {
+    return {
+      type: "SET_UPDATED_BOOK",
+      data
+    }
+  }
+
+  export const handOutBook = (userId, bookId) => dispatch => {
+    return fetch('handout', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userId: userId,
+          bookId: bookId
+        })
+      })
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(getBookData(bookId))
+        } else {
+          console.log("Something wrong in admin actions!");
+        }
+      })
+  }
+
+  export const cancelBookReservation = (userId, bookId) => dispatch => {
+    return fetch('cancelreservationadmin', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userId: userId,
+          bookId: bookId
+        })
+      })
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(getBookData(bookId))
+        } else {
+          console.log("Something wrong in admin actions!!!");
+        }
+      })
+  }
+
+  export const returnBook = (userId, bookId) => dispatch => {
+    return fetch('returnbook', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userId: userId,
+          bookId: bookId
+        })
+      })
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(getBookData(bookId))
+        } else {
+          console.log("Something has happened on admin actions!");
+        }
+      })
+  }
+

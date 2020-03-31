@@ -19,6 +19,8 @@ class BookPageContainer extends React.PureComponent {
         comments: [],
         count: 0,
         availableCount: 0,
+        bookedBy: [],
+        takenBy: [],
         bookingTime: 1000 * 60 * 60 * 48,
         showSpiner: true,
         hasUserThisBook: false
@@ -34,7 +36,7 @@ class BookPageContainer extends React.PureComponent {
             comment.id = i + comment.commentAuthorId + comment.date;
             return comment;
           })
-          this.setState({ comments: comments, count: data.count, availableCount: data.availableCount, showSpiner: false });
+          this.setState({ comments: comments, count: data.count, takenBy: data.takenBy, bookedBy: data.bookedBy, availableCount: data.availableCount, showSpiner: false });
         })
         socket.on(`dataUpdate${this.state.bookId}`, () => {
           socket.emit('requestBook', { bookId: this.state.bookId });
@@ -54,7 +56,7 @@ class BookPageContainer extends React.PureComponent {
           if (book.bookId === this.state.bookId) return true
           return false
         })
-        console.log(overlapArray);
+        //console.log(overlapArray);
         if (overlapArray.length > 0) {
           this.setState({ hasUserThisBook: true })
         }
@@ -126,7 +128,9 @@ class BookPageContainer extends React.PureComponent {
                     bookDescription={bookDescription} 
                     comments={this.state.comments} 
                     count={this.state.count} 
-                    availableCount={this.state.availableCount} 
+                    availableCount={this.state.availableCount}  
+                    takenByCount={this.state.takenBy.length} 
+                    bookedByCount={this.state.bookedBy.length} 
                     hasUserThisBook={this.state.hasUserThisBook}
                     userId={this.props.userId} 
                     isAdmin={this.props.isAdmin} 

@@ -106,7 +106,7 @@ router.post("/search", (req, res) => {
 
 
 router.get("/book/:bookId", (req, res) => {
-  console.log("hi from user routes");
+  //console.log("hi from user routes");
   getSingleBook(req, res)
 })
 
