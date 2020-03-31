@@ -23,6 +23,8 @@ class BookPage extends React.PureComponent {
           bookedByCount,
           takenByCount,
           hasUserThisBook,
+          hasUserThisBookOnHands,
+          hasUserThisBookBooked,
           userId,
           isAdmin,
           addCommentHandler,
@@ -37,8 +39,14 @@ class BookPage extends React.PureComponent {
           </div>
         ) : null;
 
-        let addComment = userId ? <AddComment bookId={bookId}  commentAuthorId={userId} addCommentHandler={addCommentHandler}/> : null
-        
+        let addComment = userId ? <AddComment bookId={bookId}  commentAuthorId={userId} addCommentHandler={addCommentHandler}/> : null;
+
+        let bookBtn = null;
+        if (!hasUserThisBookOnHands) {
+          if(!hasUserThisBookBooked) {
+            bookBtn = <button onClick={this.props.bookingBookHandler}>Make reservation</button>
+          } else bookBtn = <button onClick={this.props.cancelReservationHandler} >Cancel reservation</button>
+        } else bookBtn = <button onClick={this.props.bookingBookHandler} disabled={true}>Make a reservation</button>
 
         return (<div>
                   <div >
@@ -57,8 +65,7 @@ class BookPage extends React.PureComponent {
                         <option>12 hours</option>
                         <option>6 hours</option>
                       </select>
-                      <button onClick={this.props.bookingBookHandler} disabled={hasUserThisBook?true:false}>Make a reservation</button>
-                      
+                      {bookBtn}
                     </div>
                   </div>
                   {adminLink}

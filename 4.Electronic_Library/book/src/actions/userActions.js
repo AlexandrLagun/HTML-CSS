@@ -32,11 +32,11 @@ export const signInUser = (data) => dispatch => {
       
     } else if (res.status === 401) {
 
-      throw new Error("Invalid username or password");
+      throw new Error("Invalid email or password");
 
     } else if (res.status === 404) {
       
-      throw new Error("User with such username doesn't exists");
+      throw new Error("User with such email doesn't exists");
 
     }
   })

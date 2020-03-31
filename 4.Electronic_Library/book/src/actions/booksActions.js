@@ -79,6 +79,37 @@ export const addComment = (commentText, bookId) => dispatch => {
   })
 }
 
+
+export const cancelBookReservationUser = (bookId) => dispatch => {
+  return fetch("/cancelreservationuser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        bookId,
+      })
+    })
+    .then(res => {
+      if (res.status === 200) {
+        dispatch(getUser());
+        /* dispatch(setModal({
+          isShow: true,
+          modalTitle: "Booking book",
+          modalText: `Book has booked for ${bookingTime/1000/60/60} hours`
+        })) */ console.log(`Book has cancel reservation for book`);
+      } else {
+        /* dispatch(setModal({
+          isShow: true,
+          modalTitle: "Booking book faild",
+          modalText: "There are no available books or you alredy have one of it"
+        })) */  console.log("There are no available books or you alredy have one of it");
+      }
+    })
+}
+
+
+
 export const bookingBook = (bookId, bookingTime) => dispatch => {
   return fetch("/bookingbook", {
       method: "POST",

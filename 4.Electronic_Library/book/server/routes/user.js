@@ -19,6 +19,8 @@ const {
   addComment,
   bookingBook,
   decrementAvailableBooksCount,
+  incrementAvailableBooksCount,
+  cancelReservation
   
 } = require("../services/books");
 
@@ -129,6 +131,22 @@ router.post("/bookingbook", passport.authenticate("jwtBan", {
       res.sendStatus(400);
     })
 })
+
+router.post("/cancelreservationuser", passport.authenticate("jwtBan", {
+  session: false
+}), (req, res) => {
+  cancelReservation(req.body.bookId, req.user._id)
+    .then(() => incrementAvailableBooksCount(req.body.bookId))
+    .then(() => {
+      /* logger.info(`user ${req.user._id} booked book ${req.body.bookId}`) */
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(400);
+    })
+})
+
+
 
 
 

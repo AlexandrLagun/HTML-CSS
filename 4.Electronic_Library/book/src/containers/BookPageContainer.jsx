@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import BookPage from '../components/BookPage';
 import Spinner from '../components/Spinner';
-import { addComment, getSingleBook, bookingBook } from '../actions/booksActions';
+import { addComment, getSingleBook, bookingBook, cancelBookReservationUser } from '../actions/booksActions';
 import { deleteComment } from '../actions/admin';
 import openSocket from 'socket.io-client';
 const socket = openSocket('/');
@@ -23,7 +23,8 @@ class BookPageContainer extends React.PureComponent {
         takenBy: [],
         bookingTime: 1000 * 60 * 60 * 48,
         showSpiner: true,
-        hasUserThisBook: false
+        hasUserThisBookOnHands: false,
+        hasUserThisBookBooked: false
       }
 
       componentDidMount() {
@@ -51,14 +52,22 @@ class BookPageContainer extends React.PureComponent {
 
       componentDidUpdate(prevProps, prevState) {
           /* finding out if this user has this book(on hands or in booking books) */
-        let userBooks = [...this.props.bookedBooks, ...this.props.takenBooks]
-        let overlapArray = userBooks.filter(book => {
+        let userBooksOnHands = [...this.props.takenBooks]
+        let overlapArrayOnHands = userBooksOnHands.filter(book => {
+          if (book.bookId === this.state.bookId) return true
+          return false
+        })
+        let userBookedBooks = [...this.props.bookedBooks]
+        let overlapArrayBooked = userBookedBooks.filter(book => {
           if (book.bookId === this.state.bookId) return true
           return false
         })
         //console.log(overlapArray);
-        if (overlapArray.length > 0) {
-          this.setState({ hasUserThisBook: true })
+        if (overlapArrayOnHands.length > 0) {
+          this.setState({ hasUserThisBookOnHands: true })
+        }
+        if (overlapArrayBooked.length > 0) {
+          this.setState({ hasUserThisBookBooked: true })
         }
       }
 
@@ -96,8 +105,13 @@ class BookPageContainer extends React.PureComponent {
         }
         if (this.banCheck()) return
         this.props.onBookingBook(this.state.bookId, this.state.bookingTime)
-          .then(this.setState({ hasUserThisBook: true }))
+          .then(this.setState({ hasUserThisBookBooked: true }))
       }
+
+      cancelReservationHandler = (userId) => {
+        this.props.onCancelReservation(this.state.bookId)
+        .then(this.setState({ hasUserThisBookBooked: false }));
+    }
       
 
       bookingTimeHandler = bookingTime => {
@@ -131,11 +145,13 @@ class BookPageContainer extends React.PureComponent {
                     availableCount={this.state.availableCount}  
                     takenByCount={this.state.takenBy.length} 
                     bookedByCount={this.state.bookedBy.length} 
-                    hasUserThisBook={this.state.hasUserThisBook}
+                    hasUserThisBookOnHands={this.state.hasUserThisBookOnHands}
+                    hasUserThisBookBooked={this.state.hasUserThisBookBooked}
                     userId={this.props.userId} 
                     isAdmin={this.props.isAdmin} 
                     addCommentHandler={this.addCommentHandler} 
                     bookingBookHandler={this.bookingBookHandler} 
+                    cancelReservationHandler={this.cancelReservationHandler} 
                     deleteCommentHandler={this.deleteCommentHandler} 
                     bookingTimeHandler={this.bookingTimeHandler} 
                     goBack={this.goBack}                    
@@ -163,6 +179,7 @@ const mapStateToProps = state => {
       onGetSingleBookData: (bookId) => dispatch(getSingleBook(bookId)),
       onAddComment: (commentText, bookId) => dispatch(addComment(commentText, bookId)),
       onBookingBook: (bookId, bookingTime) => dispatch(bookingBook(bookId, bookingTime)),
+      onCancelReservation: (bookId) => dispatch(cancelBookReservationUser(bookId)),
       onDeleteComment: (bookId, commentId) => dispatch(deleteComment(bookId, commentId)),
     }
   }
