@@ -146,6 +146,11 @@ router.post("/cancelreservationuser", passport.authenticate("jwtBan", {
     })
 })
 
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwt");
+  res.sendStatus(200);
+});
+
 
 
 

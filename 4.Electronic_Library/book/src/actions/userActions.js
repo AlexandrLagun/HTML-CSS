@@ -69,3 +69,17 @@ export const setUser = user => {
     };
   }
 
+
+  export const logOutUser = () => dispatch => {
+    return fetch("/logout")
+      .then(() => dispatch(setUser({
+        _id: '',
+        firstName: "",
+        lastName: "",
+        username: "Guest",
+        email: null,
+        takenBooks: [],
+        bookedBooks: []
+      })))
+  }
+  
