@@ -121,9 +121,13 @@ router.post("/addcomment", passport.authenticate("jwtBan", {
 router.post("/bookingbook", passport.authenticate("jwtBan", {
   session: false
 }), (req, res) => {
+  console.log(" 3 route bookingBook start bookingBookServises!!!");
   bookingBook(req.body.bookId, req.user._id, req.body.bookingTime)
-    .then(() => decrementAvailableBooksCount(req.body.bookId))
     .then(() => {
+      console.log(" 6 route bookingBook after bookingBookServises!!!");
+      decrementAvailableBooksCount(req.body.bookId)})
+    .then(() => {
+      console.log(" 7 route bookingBook start bookingBookServises!!!");
       /* logger.info(`user ${req.user._id} booked book ${req.body.bookId}`) */
       res.sendStatus(200);
     })

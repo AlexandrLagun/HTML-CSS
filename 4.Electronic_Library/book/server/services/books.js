@@ -1,5 +1,5 @@
 const {  Book, User } = require("./database");
-const { io } = require('../server');
+//const { io } = require('../server');
 const  maxBookingTime  = 1000 * 60 * 60 * 48;
 
 
@@ -89,13 +89,14 @@ const getBooks = (req, res) => {
         upsert: true
       })
       .then(() => {
-        io.sockets.emit(`dataUpdate${req.body.bookId}`);
+        //io.sockets.emit(`dataUpdate${req.body.bookId}`);
         res.sendStatus(200)
       })
       .catch((err) => console.log(err.message))
   }
 
   const bookingBook = (bookId, userId, bookingTime) => {
+    console.log(" 4 servises bookingBook start");
     if (!bookingTime) bookingTime = maxBookingTime;
     return Book.findById(bookId)
       .then((book) => {
@@ -110,10 +111,16 @@ const getBooks = (req, res) => {
           if (bookUserId === stringUserId) index = i
         })
         if (book.availableCount > 0 && index < 0) {
+          console.log(" 5 servises bookingBook before promise.all");
           Promise.all([addUserToBookingBook(bookId, userId, bookingTime), addBookingBookToUser(book, userId, bookingTime)])
-            .then(() => {
-              io.sockets.emit(`dataUpdate${bookId}`)
+            //.then(() => decrementAvailableBooksCount(bookId))
+           /*  .then(() => {
+              //io.sockets.emit(`dataUpdate${bookId}`);
+              io.emit(`requestBook`);
+              console.log("booking book from services end - well");
+  
             })
+            .catch((err) => {console.log('Error=======' + err)})  */
         }
         else {
           throw new Error()
@@ -162,24 +169,35 @@ const getBooks = (req, res) => {
   }
 
   const decrementAvailableBooksCount = bookId => {
+    console.log("decrement availableCount end")
     return Book.findById(bookId)
       .then((book) => {
         book.availableCount--;
         book.save()
       })
+      //.then(() => console.log("decrement availableCount end"))
   }
 
   const incrementAvailableBooksCount = bookId => {
+    console.log("increment availableCount end")
     return Book.findById(bookId)
       .then((book) => {
         book.availableCount++;
         book.save()
       })
+      //.then(() => console.log("increment availableCount end"))
   }
 
   const cancelReservation = (bookId, userId) => {
     return Promise.all([removeUserFromBookingBook(bookId, userId), removeBookingBookFromUser(bookId, userId)])
       .then(data => data[0])
+      /* .then(() => {
+        //io.sockets.emit(`dataUpdate${bookId}`);
+        io.emit(`requestBook`);
+        console.log("cancel booking from services end - well");
+
+      })
+      .catch((err) => {console.log('Error=======' + err)}) */
   }
 
   const removeUserFromBookingBook = (bookId, userId) => {

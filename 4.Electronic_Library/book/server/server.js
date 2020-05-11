@@ -1,4 +1,4 @@
-const cors = require('cors');
+const cors = require('cors'); //
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
@@ -26,6 +26,7 @@ app.use(passport.initialize());
 const io = require('socket.io')(server);
 io.on('connection', function(socket) {
     socket.on('requestBook', (book) => {   /////////////////////////////error possible/////
+      console.log("Start socket requestBook");
       getSingleBookData(book.bookId)
         .then((book) => {
           return {

@@ -59,10 +59,10 @@ export const getSingleBook = (bookId) => (dispatch) => {
 }
 
 export const setSingleBook = book => {
-  console.log(book);
+  //console.log(book);
   return {
     type: "SET_SINGLE_BOOK",
-    payload: book
+    book
   }
 }
 
@@ -111,6 +111,7 @@ export const cancelBookReservationUser = (bookId) => dispatch => {
 
 
 export const bookingBook = (bookId, bookingTime) => dispatch => {
+  console.log(" 2 Start bookingBook from bookActions");
   return fetch("/bookingbook", {
       method: "POST",
       headers: {
@@ -123,12 +124,13 @@ export const bookingBook = (bookId, bookingTime) => dispatch => {
     })
     .then(res => {
       if (res.status === 200) {
+        console.log(" 7 End of route bookingBook in action");
         dispatch(getUser());
         /* dispatch(setModal({
           isShow: true,
           modalTitle: "Booking book",
           modalText: `Book has booked for ${bookingTime/1000/60/60} hours`
-        })) */ console.log(`Book has booked for ${bookingTime/1000/60/60} hours`);
+        })) */ //console.log(`Book has booked for ${bookingTime/1000/60/60} hours`);
       } else {
         /* dispatch(setModal({
           isShow: true,

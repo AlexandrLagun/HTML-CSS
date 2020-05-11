@@ -4,13 +4,13 @@ import BookPage from '../components/BookPage';
 import Spinner from '../components/Spinner';
 import { addComment, getSingleBook, bookingBook, cancelBookReservationUser } from '../actions/booksActions';
 import { deleteComment } from '../actions/admin';
-import openSocket from 'socket.io-client';
-const socket = openSocket('/');
+import io from 'socket.io-client';
+const socket = io.connect('/');
 
 class BookPageContainer extends React.PureComponent {
 
     state = {
-        bookId: "5e71fc738d5e9124f4e6637a" ,//this.props.match.params.bookId,
+        bookId: "5e7203908d5e9124f4e6637b",//"5e71fc738d5e9124f4e6637a" ,//this.props.match.params.bookId,
         title: '',
         bookAuthor: '',
         year: '',
@@ -24,7 +24,8 @@ class BookPageContainer extends React.PureComponent {
         bookingTime: 1000 * 60 * 60 * 48,
         showSpiner: true,
         hasUserThisBookOnHands: false,
-        hasUserThisBookBooked: false
+        hasUserThisBookBooked: false,
+        hasUserThisBook: false
       }
 
       componentDidMount() {
@@ -33,13 +34,16 @@ class BookPageContainer extends React.PureComponent {
           this.props.onGetSingleBookData(this.state.bookId);
         socket.emit('requestBook', { bookId: this.state.bookId });
         socket.on('responseBook', data => {
+          //console.log("Hi from socket.io-client ");
+         
           let comments = data.comments.map((comment, i) => {
             comment.id = i + comment.commentAuthorId + comment.date;
             return comment;
           })
           this.setState({ comments: comments, count: data.count, takenBy: data.takenBy, bookedBy: data.bookedBy, availableCount: data.availableCount, showSpiner: false });
-        })
+        });
         socket.on(`dataUpdate${this.state.bookId}`, () => {
+          console.log("HI from dataUpdate-client socket");
           socket.emit('requestBook', { bookId: this.state.bookId });
         })
       }
@@ -52,20 +56,22 @@ class BookPageContainer extends React.PureComponent {
 
       componentDidUpdate(prevProps, prevState) {
           /* finding out if this user has this book(on hands or in booking books) */
-        let userBooksOnHands = [...this.props.takenBooks]
-        let overlapArrayOnHands = userBooksOnHands.filter(book => {
+          console.log("this.state.hasUserThisBookBooked:" + this.state.hasUserThisBookBooked); 
+        //let userBooksOnHands = [...this.props.takenBooks]
+        /* let overlapArrayOnHands = userBooksOnHands.filter(book => {
           if (book.bookId === this.state.bookId) return true
           return false
-        })
+        }) */
         let userBookedBooks = [...this.props.bookedBooks]
+
         let overlapArrayBooked = userBookedBooks.filter(book => {
           if (book.bookId === this.state.bookId) return true
           return false
         })
-        //console.log(overlapArray);
-        if (overlapArrayOnHands.length > 0) {
+        console.log('overlapArray' + overlapArrayBooked.length);
+      /*   if (overlapArrayOnHands.length > 0) {
           this.setState({ hasUserThisBookOnHands: true })
-        }
+        } */
         if (overlapArrayBooked.length > 0) {
           this.setState({ hasUserThisBookBooked: true })
         }
@@ -99,18 +105,29 @@ class BookPageContainer extends React.PureComponent {
       }
 
       bookingBookHandler = e => {
+        //this.setState({ hasUserThisBookBooked: true });
+        console.log("1 this.state.hasUserThisBookBooked from booking book:" + this.state.hasUserThisBookBooked); 
+        console.log("2 bookingBookHandler was started from container" + this.state.bookId, this.state.bookingTime);
         if (!this.props.userId) {
           this.props.history.push('/login')
           return
         }
         if (this.banCheck()) return
+        //console.log("this.state.hasUserThisBookBooked from booking book:" + this.state.hasUserThisBookBooked); 
         this.props.onBookingBook(this.state.bookId, this.state.bookingTime)
-          .then(this.setState({ hasUserThisBookBooked: true }))
+        //this.setState({ hasUserThisBookBooked: true });
+          .then(() => {this.setState({ hasUserThisBookBooked: true })})
+          .then(() => {socket.emit('requestBook', { bookId: this.state.bookId })});
       }
 
       cancelReservationHandler = (userId) => {
+        console.log("1 cancelReservationHandler was started from container");
+        //this.setState({ hasUserThisBookBooked: false });
+        //console.log("this.state.hasUserThisBookBooked from cancel reservation:" + this.state.hasUserThisBookBooked);
+        
         this.props.onCancelReservation(this.state.bookId)
-        .then(this.setState({ hasUserThisBookBooked: false }));
+        .then(() => {this.setState({ hasUserThisBookBooked: false })})
+        .then(() => {socket.emit('requestBook', { bookId: this.state.bookId })});
     }
       
 

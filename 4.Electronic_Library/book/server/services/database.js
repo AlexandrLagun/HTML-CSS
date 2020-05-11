@@ -7,7 +7,7 @@ const { success, error} = require('consola');
 
 const connectToMongoDB =  () => {
   try{
-   mongoose.connect(DBurl, {useFindAndModify: true, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true});
+   mongoose.connect(DBurl, {useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true});
     success ({ message: `Successfully connected to Database `, badge: true});
   
   } catch(err) {
