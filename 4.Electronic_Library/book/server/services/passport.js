@@ -1,4 +1,4 @@
-//const passport = require("passport");
+const passport = require("passport");
 const JwtStrategy = require("passport-jwt").Strategy;
 //const ExtractJwt = require("passport-jwt").ExtractJwt;
 const User  = require("./database").User;
@@ -36,7 +36,7 @@ const opts = {
   })
 ); */
 
-  const passportJWT = new JwtStrategy(opts, function(jwt_payload, done) {
+  passport.use("jwt", new JwtStrategy(opts, function(jwt_payload, done) {
     User.findOne({
         _id: jwt_payload.userId
       },
@@ -51,9 +51,10 @@ const opts = {
         }
       }
     );
-  });
+  })
+  );
 
-  const passportJWTBan = new JwtStrategy(opts, function(jwt_payload, done) {
+  passport.use("jwtBan", new JwtStrategy(opts, function(jwt_payload, done) {
     User.findOne({
         _id: jwt_payload.userId
       },
@@ -68,9 +69,10 @@ const opts = {
         }
       }
     );
-  });
+  })
+  );
 
-  const passportJWTAdmin = new JwtStrategy(opts, function(jwt_payload, done) {
+  passport.use("jwtAdmin", new JwtStrategy(opts, function(jwt_payload, done) {
     User.findOne({
         _id: jwt_payload.userId
       },
@@ -85,11 +87,12 @@ const opts = {
         }
       }
     );
-  });
+  })
+  );
 
 
-module.exports = {
+/* module.exports = {
   passportJWT,
   passportJWTBan,
   passportJWTAdmin
-};
+}; */

@@ -4,8 +4,10 @@ import BookPage from '../components/BookPage';
 import Spinner from '../components/Spinner';
 import { addComment, getSingleBook, bookingBook, cancelBookReservationUser } from '../actions/booksActions';
 import { deleteComment } from '../actions/admin';
-import io from 'socket.io-client';
-const socket = io.connect('/');
+/* import io from 'socket.io-client';
+const socket = io.connect('/'); */
+import openSocket from 'socket.io-client';
+const socket = openSocket('/');
 
 class BookPageContainer extends React.PureComponent {
 
@@ -23,59 +25,64 @@ class BookPageContainer extends React.PureComponent {
         takenBy: [],
         bookingTime: 1000 * 60 * 60 * 48,
         showSpiner: true,
-        hasUserThisBookOnHands: false,
-        hasUserThisBookBooked: false,
+       /*  hasUserThisBookOnHands: false,
+        hasUserThisBookBooked: false, */
         hasUserThisBook: false
       }
 
-      componentDidMount() {
-        /* if (!this.props.booksDetails[this.state.bookId]) */
-        
-          this.props.onGetSingleBookData(this.state.bookId);
-        socket.emit('requestBook', { bookId: this.state.bookId });
-        socket.on('responseBook', data => {
-          //console.log("Hi from socket.io-client ");
-         
+
+     /*  componentDidMount() {
+        //if (!this.props.booksDetails[this.state.bookId])
+          this.props.onGetSingleBook(this.state.bookId);
+        socket.emit('reqBookData', { bookId: this.state.bookId });
+        socket.on('resBookData', data => {
           let comments = data.comments.map((comment, i) => {
             comment.id = i + comment.commentAuthorId + comment.date;
             return comment;
           })
-          this.setState({ comments: comments, count: data.count, takenBy: data.takenBy, bookedBy: data.bookedBy, availableCount: data.availableCount, showSpiner: false });
-        });
+          this.setState({ comments: comments, count: data.count, availableCount: data.availableCount, showSpiner: false });
+        })
         socket.on(`dataUpdate${this.state.bookId}`, () => {
-          console.log("HI from dataUpdate-client socket");
-          socket.emit('requestBook', { bookId: this.state.bookId });
+          socket.emit('reqBookData', { bookId: this.state.bookId });
+        })
+      } */
+
+      componentDidMount() {
+        if (!this.props.bookPageReducer[this.state.bookId])
+          this.props.onGetSingleBookData(this.state.bookId);
+        socket.emit('requestBookData', { bookId: this.state.bookId });
+        socket.on('responceBookData', data => {
+          let comments = data.comments.map((comment, i) => {
+            comment.id = i + comment.commentAuthorId + comment.date;
+            return comment;
+          })
+          this.setState({ comments: comments, count: data.count, availableCount: data.availableCount, showSpiner: false });
+        })
+        socket.on(`bookUpdate${this.state.bookId}`, () => {
+          console.log("Hi from socket bookUpdate");
+          socket.emit('requestBookData', { bookId: this.state.bookId });
         })
       }
 
 
       componentWillUnmount(nextProps, nextState) {
-        socket.off('responseBook');
-        socket.off(`dataUpdate${this.state.bookId}`);
+        socket.off('responceBookData');
+        socket.off(`bookUpdate${this.state.bookId}`);
       }
 
-      componentDidUpdate(prevProps, prevState) {
-          /* finding out if this user has this book(on hands or in booking books) */
-          console.log("this.state.hasUserThisBookBooked:" + this.state.hasUserThisBookBooked); 
-        //let userBooksOnHands = [...this.props.takenBooks]
-        /* let overlapArrayOnHands = userBooksOnHands.filter(book => {
-          if (book.bookId === this.state.bookId) return true
-          return false
-        }) */
-        let userBookedBooks = [...this.props.bookedBooks]
 
-        let overlapArrayBooked = userBookedBooks.filter(book => {
+      componentDidUpdate(prevProps, prevState) {
+        let userBooks = [...this.props.bookedBooks, ...this.props.takenBooks]
+        let compainBook = userBooks.filter(book => {
           if (book.bookId === this.state.bookId) return true
           return false
         })
-        console.log('overlapArray' + overlapArrayBooked.length);
-      /*   if (overlapArrayOnHands.length > 0) {
-          this.setState({ hasUserThisBookOnHands: true })
-        } */
-        if (overlapArrayBooked.length > 0) {
-          this.setState({ hasUserThisBookBooked: true })
+        console.log('compainBook: ' + compainBook);
+        if (compainBook.length > 0) {
+          this.setState({ hasUserThisBook: true })
         }
       }
+    
 
       banCheck = () => {
         if (this.props.isBan) {
@@ -89,11 +96,11 @@ class BookPageContainer extends React.PureComponent {
       addCommentHandler = commentText => {
         if (this.banCheck() || !commentText) return
         let newComment = {
-          commentId: this.props.userId + this.commentDate,
-          commentDate: Date.now(),
+          date: Date.now(),
           commentAuthorId: this.props.userId,
           commentAuthor: this.props.username,
-          commentText: commentText
+          commentText: commentText,
+          id: this.props.userId + this.date
         }
         this.setState((prevState) => ({
           comments: [
@@ -105,31 +112,14 @@ class BookPageContainer extends React.PureComponent {
       }
 
       bookingBookHandler = e => {
-        //this.setState({ hasUserThisBookBooked: true });
-        console.log("1 this.state.hasUserThisBookBooked from booking book:" + this.state.hasUserThisBookBooked); 
-        console.log("2 bookingBookHandler was started from container" + this.state.bookId, this.state.bookingTime);
         if (!this.props.userId) {
-          this.props.history.push('/login')
+          //this.props.history.push('/login')
           return
         }
         if (this.banCheck()) return
-        //console.log("this.state.hasUserThisBookBooked from booking book:" + this.state.hasUserThisBookBooked); 
         this.props.onBookingBook(this.state.bookId, this.state.bookingTime)
-        //this.setState({ hasUserThisBookBooked: true });
-          .then(() => {this.setState({ hasUserThisBookBooked: true })})
-          .then(() => {socket.emit('requestBook', { bookId: this.state.bookId })});
+          .then(this.setState({ hasUserThisBook: true }))
       }
-
-      cancelReservationHandler = (userId) => {
-        console.log("1 cancelReservationHandler was started from container");
-        //this.setState({ hasUserThisBookBooked: false });
-        //console.log("this.state.hasUserThisBookBooked from cancel reservation:" + this.state.hasUserThisBookBooked);
-        
-        this.props.onCancelReservation(this.state.bookId)
-        .then(() => {this.setState({ hasUserThisBookBooked: false })})
-        .then(() => {socket.emit('requestBook', { bookId: this.state.bookId })});
-    }
-      
 
       bookingTimeHandler = bookingTime => {
         this.setState({ bookingTime })
@@ -146,9 +136,9 @@ class BookPageContainer extends React.PureComponent {
 
       render() {
         //console.log(this.props.bookData[this.state.bookId]);
-        let { title, bookAuthor, year, genre, bookDescription } = this.props.bookData[this.state.bookId] ?
-          this.props.bookData[this.state.bookId] :
-          this.state
+        let { title, bookAuthor, year, genre, bookDescription } = this.props.bookPageReducer[this.state.bookId] ?
+          this.props.bookPageReducer[this.state.bookId] :
+          this.state;
         let bookPage = this.state.showSpiner ?
           <Spinner/> :
           <BookPage bookId={this.state.bookId}
@@ -160,17 +150,18 @@ class BookPageContainer extends React.PureComponent {
                     comments={this.state.comments} 
                     count={this.state.count} 
                     availableCount={this.state.availableCount}  
-                    takenByCount={this.state.takenBy.length} 
-                    bookedByCount={this.state.bookedBy.length} 
-                    hasUserThisBookOnHands={this.state.hasUserThisBookOnHands}
-                    hasUserThisBookBooked={this.state.hasUserThisBookBooked}
+                   /*  takenByCount={this.state.takenBy.length} 
+                    bookedByCount={this.state.bookedBy.length}  */
+                   /*  hasUserThisBookOnHands={this.state.hasUserThisBookOnHands}
+                    hasUserThisBookBooked={this.state.hasUserThisBookBooked} */
                     userId={this.props.userId} 
                     isAdmin={this.props.isAdmin} 
                     addCommentHandler={this.addCommentHandler} 
                     bookingBookHandler={this.bookingBookHandler} 
-                    cancelReservationHandler={this.cancelReservationHandler} 
+                   /*  cancelReservationHandler={this.cancelReservationHandler}  */
                     deleteCommentHandler={this.deleteCommentHandler} 
                     bookingTimeHandler={this.bookingTimeHandler} 
+                    hasUserThisBook={this.state.hasUserThisBook}
                     goBack={this.goBack}                    
             />
         return ( <> { bookPage } </>);
@@ -187,7 +178,7 @@ const mapStateToProps = state => {
       isBan: state.userReducer.isBan,
       takenBooks: state.userReducer.takenBooks,
       bookedBooks: state.userReducer.bookedBooks,
-      bookData: state.bookPageReducer
+      bookPageReducer: state.bookPageReducer
     }
   }
 

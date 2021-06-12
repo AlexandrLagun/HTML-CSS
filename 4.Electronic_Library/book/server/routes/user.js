@@ -25,14 +25,6 @@ const {
 } = require("../services/books");
 
 
-router.get("/", (req, res) => {
-  res.send("Hello world");
-});
-
-/* router.get("/profile", (req, res) => {
-  res.send("UserInfo");
-}); */
-
 router.post("/signup", /* [
   // firstname must be at least 2 chars long
   check('firstname').isLength({ min: 3 }),
@@ -53,8 +45,6 @@ router.post("/signup", /* [
     console.log("---Errors from signup: " + JSON.stringify(errors));
     } */
 
-
-    console.log("It's Ok");
     const {firstname, lastname, username, email, password} = req.body;
     const userData = {firstname, lastname, username, email, password};
     //const userData = req.body;
@@ -121,13 +111,10 @@ router.post("/addcomment", passport.authenticate("jwtBan", {
 router.post("/bookingbook", passport.authenticate("jwtBan", {
   session: false
 }), (req, res) => {
-  console.log(" 3 route bookingBook start bookingBookServises!!!");
   bookingBook(req.body.bookId, req.user._id, req.body.bookingTime)
+    .then(() => decrementAvailableBooksCount(req.body.bookId))
     .then(() => {
-      console.log(" 6 route bookingBook after bookingBookServises!!!");
-      decrementAvailableBooksCount(req.body.bookId)})
-    .then(() => {
-      console.log(" 7 route bookingBook start bookingBookServises!!!");
+      console.log(" Hi from booking route!");
       /* logger.info(`user ${req.user._id} booked book ${req.body.bookId}`) */
       res.sendStatus(200);
     })

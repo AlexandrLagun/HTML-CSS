@@ -4,6 +4,7 @@ import AddComment from './AddComment';
 import { Link } from "react-router-dom";
 
 class BookPage extends React.PureComponent {
+
     bookingTimeHandler = e => {
         let hours = parseFloat(e.target.value)
         this.props.bookingTimeHandler(1000 * 60 * 60 * hours)
@@ -20,11 +21,11 @@ class BookPage extends React.PureComponent {
           comments,
           count,
           availableCount,
-          bookedByCount,
-          takenByCount,
+          /* bookedByCount,
+          takenByCount, */
           hasUserThisBook,
-          hasUserThisBookOnHands,
-          hasUserThisBookBooked,
+         /*  hasUserThisBookOnHands,
+          hasUserThisBookBooked, */
           userId,
           isAdmin,
           addCommentHandler,
@@ -50,10 +51,10 @@ class BookPage extends React.PureComponent {
 
         
         
-          if(!hasUserThisBookBooked) {
+         /*  if(!hasUserThisBookBooked) {
            var bookBtn = <button onClick={this.props.bookingBookHandler}>Make reservation</button>
           } else bookBtn = <button onClick={this.props.cancelReservationHandler} >Cancel reservation</button>
-           //bookBtn = <button onClick={this.props.bookingBookHandler} disabled={hasUserThisBookBooked?true:false}>Make reservation</button>
+           //bookBtn = <button onClick={this.props.bookingBookHandler} disabled={hasUserThisBookBooked?true:false}>Make reservation</button> */
 
         return (<div>
                   <div >
@@ -64,7 +65,7 @@ class BookPage extends React.PureComponent {
                       <p> {year} </p>
                       <p> {genre} </p>
                       <p> {bookDescription} </p>
-                      <p>Available count: {availableCount},  booked count: {bookedByCount}, taken on hands count:  {takenByCount} </p>
+                      <p>Available count: {availableCount}/{count}</p>
                       <button  onClick={this.props.goBack}>Go back</button>
                       <select  onChange={this.bookingTimeHandler}>
                         <option>2 days</option>
@@ -72,7 +73,7 @@ class BookPage extends React.PureComponent {
                         <option>12 hours</option>
                         <option>6 hours</option>
                       </select>
-                      {bookBtn}
+                      <button  onClick={this.props.bookingBookHandler} disabled={hasUserThisBook ? true : false}>Book this book</button>
                     </div>
                   </div>
                   {adminLink}

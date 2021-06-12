@@ -1,5 +1,5 @@
 const {  Book, User } = require("./database");
-//const { io } = require('../server');
+const { io } = require('../server');
 const  maxBookingTime  = 1000 * 60 * 60 * 48;
 
 
@@ -96,7 +96,7 @@ const getBooks = (req, res) => {
   }
 
   const bookingBook = (bookId, userId, bookingTime) => {
-    console.log(" 4 servises bookingBook start");
+    console.log(" Hi from servises bookingBook!");
     if (!bookingTime) bookingTime = maxBookingTime;
     return Book.findById(bookId)
       .then((book) => {
@@ -111,8 +111,10 @@ const getBooks = (req, res) => {
           if (bookUserId === stringUserId) index = i
         })
         if (book.availableCount > 0 && index < 0) {
-          console.log(" 5 servises bookingBook before promise.all");
           Promise.all([addUserToBookingBook(bookId, userId, bookingTime), addBookingBookToUser(book, userId, bookingTime)])
+          .then(() => {
+            io.sockets.emit(`bookUpdate${bookId}`)
+          })
             //.then(() => decrementAvailableBooksCount(bookId))
            /*  .then(() => {
               //io.sockets.emit(`dataUpdate${bookId}`);
@@ -152,6 +154,7 @@ const getBooks = (req, res) => {
     return new Promise((res, rej) => {
       let data = {
         bookId: book._id,
+        title: book.title,
         dateOfBook: Date.now(),
         datebookEnd: Date.now() + bookingTime,
       }
@@ -169,7 +172,7 @@ const getBooks = (req, res) => {
   }
 
   const decrementAvailableBooksCount = bookId => {
-    console.log("decrement availableCount end")
+    console.log(" Hi from decrementavailableCount")
     return Book.findById(bookId)
       .then((book) => {
         book.availableCount--;
